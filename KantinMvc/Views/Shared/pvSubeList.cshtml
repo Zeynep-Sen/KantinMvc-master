@@ -1,5 +1,6 @@
-﻿<table class="table table-striped">
+﻿@model KantinMvc.Models.OnViewModel.OnViewSube
 
+<table class="table table-striped">
     <thead>
         <tr>
             <th>Sube Adı</th>
@@ -8,21 +9,44 @@
 
         </tr>
     </thead>
+
     <tbody>
         @foreach (var item in Model.Subeler)
         {
-        <tr>
-            <td>@item.ADI</td>
-            <td>@item.ISLEMTARIHI</td>
-            <td>
-                <a href="/Sube/SubeGuncelle/@item.ID" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">Guncelle</a>
-                <a href="/Sube/SubeSil/@item.ID" class="btn btn-danger" onclick="return confirm('Bu Şubeyi silmek istediğinize emin misiniz?')">Sil</a>
+          <tr>
+               @if (item.SILINDI == false)
+             {
+                      <td>@item.ADI</td>
+                      <td>@item.ISLEMTARIHI</td>
+                      <td>
+                      <a href="/Sube/SubeGuncelle/@item.ID" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleSube">Guncelle</a>
+                      <a href="/Sube/SubeSil/@item.ID" class="btn btn-danger" onclick="return confirm('Bu Şubeyi silmek istediğinize emin misiniz?')">Sil</a>
 
-            </td>
-        </tr>
-        }
+                      </td>
+}
+         </tr>
+}
 
 
     </tbody>
 
 </table>
+<div class="modal fade" id="exampleSube" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Şube Güncelle.</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+﻿@model KantinMvc.Models.SUBE
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render()
+    <title>SubeGuncelle</title>
+</head>
+<body>
+
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:lightseagreen; font:x-large; ">Şube Güncelle.</h5>
+    </div>
+    <div>
+        <div class="modal-body">
+            <div class="modal-body">
+
+                <div class="modal-body">
+                    @Html.HiddenFor(s => s.ID)
+                    @Html.LabelFor(s=> s.ADI)
+                    @Html.TextBoxFor(s => s.ADI, new { @class = "form-control" })
+                    @Html.HiddenFor(s => s.ISLEMTARIHI)
+                    <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                        <input type="submit" name="button" value="Güncelle" class="btn btn-primary" onclick="subeGuncelle()" />
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <script>
+            //function BoslukKontrol() {
+            //    var hatayok = true;
+            //    if ($("#ADI").val() == "") {
+            //        $("#lblAdHata").show();
+            //        hatayok = false;
+            //    }
+            //    return hatayok;
+            //}
+
+            function subeGuncelle() {
+                console.log("asd")
+                $.ajax({
+                    url: "/Sube/SubeGuncelle",
+                    method: "Post",
+                    data: {
+                        ADI: $("#ADI").val(),
+                        ID: $("#ID").val(),
+                        ISLEMTARIHI: $("#ISLEMTARIHI").val()
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        if (data == 'True') {
+                            alert("Şube Güncelleme İşlemi Başarılı")
+                            $("#lblAdHata").hide();
+                            $.ajax({
+                                url: "/Sube/SubeTanimKarti",
+                                method: "Get",
+                                success: function (data) {
+                                    $("#dvSubeList").html(data);
+                                }
+                            });
+                        }
+                        else {
+                            alert("Şube Güncelleme İşlemi Başarısız")
+                            $("#lblAdHata").show();
+                        }
+                    }
+
+                });
+
+            }
+        </script>
+
+    </div>
+</body>
+</html>
+
+

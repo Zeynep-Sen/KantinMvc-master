@@ -304,6 +304,7 @@
     <Content Include="Views\Sube\SubeTanimKarti.cshtml" />
     <Content Include="Views\Shared\pvSubeList.cshtml" />
     <Content Include="Views\Marka\MarkaGuncelle.cshtml" />
+    <Content Include="Views\Sube\SubeGuncelle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

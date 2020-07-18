@@ -13,24 +13,36 @@ namespace KantinMvc.Controllers
     public class SubeController : Controller
     {
         // GET: Sube
+      
         KantinContext ctx = new KantinContext();
         public ActionResult SubeTanimKarti()
         {
-
-            OnViewSube sov = new OnViewSube();
-            sov.Subeler= ctx.SUBE.ToList();
-            return View(sov);
-
+         OnViewSube sov = new OnViewSube();
+         sov.Subeler= ctx.SUBE.ToList();
+        
+           
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("pvSubeList", sov);
+            }
+            else return View(sov);
         }
         [HttpPost]
-        public bool SubeTanimKarti(OnViewSube s)
+        public bool SubeEkle(SUBE s)
         {
+            var subeVarmi = ctx.SUBE.FirstOrDefault(x => x.ADI == s.ADI);
             bool basarili = false;
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && subeVarmi == null)
             {
-                s.sube.SILINDI = false;
-                s.sube.ISLEMTARIHI = DateTime.Now;
-                ctx.SUBE.Add(s.sube);
+                s.ISLEMTARIHI = DateTime.Now;
+                s.SILINDI = false;
+                ctx.SUBE.Add(s);
+            }
+            else if (ModelState.IsValid)
+            {
+                s.ISLEMTARIHI = DateTime.Now;
+                subeVarmi.SILINDI = false;
+                ctx.Entry(subeVarmi).State = EntityState.Modified;
             }
             int sonuc = ctx.SaveChanges();
             if (sonuc > 0)
@@ -43,25 +55,30 @@ namespace KantinMvc.Controllers
         public ActionResult SubeGuncelle(int? id, SUBE s)
         {
 
-            var subeLst = ctx.SUBE.Find(id);
+            var sube= ctx.SUBE.Find(id);
 
             if (ModelState.IsValid)
             {
                 ctx.SUBE.Add(s);
             }
-            return View(subeLst);
+            return View(sube);
         }
         [HttpPost]
-        public ActionResult SubeGuncelle(SUBE s)
+        public bool SubeGuncelle(SUBE s)
         {
+            bool basarili = false;
             try
             {
                 if (ModelState.IsValid)
                 {
                     s.SILINDI = false;
                     ctx.Entry(s).State = EntityState.Modified;
-                    ctx.SaveChanges();
-                    return RedirectToAction("SubeTanimKarti");
+                    int sonuc = ctx.SaveChanges();
+                    if (sonuc > 0)
+                    {
+                        basarili = true;
+                    }
+
                 }
             }
             catch (DbEntityValidationException ex)
@@ -69,14 +86,13 @@ namespace KantinMvc.Controllers
 
                 Response.Write(ex);
             }
-            return View();
+            return basarili;
         }
         public ActionResult SubeSil(int? id)
         {
 
             var sube = ctx.SUBE.Find(id);
-            sube.SILINDI = false;
-            // ctx.SUBE.Remove(sube);
+            sube.SILINDI = true;
             ctx.Entry(sube).State = EntityState.Modified;
             ctx.SaveChanges();
 
@@ -93,3 +109,4 @@ namespace KantinMvc.Controllers
         }
     }
 }
+

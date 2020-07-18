@@ -1,0 +1,34 @@
+﻿@model KantinMvc.Models.OnViewModel.OnViewSube
+
+@{
+    ViewBag.Title = "SubeTanimKarti";
+}
+
+<h2>Sube Tanim Karti</h2>
+
+<div>
+    @using (Html.BeginForm("SubeTanimKarti", "Sube", FormMethod.Post))
+    {
+    <div class="form-group">
+        @Html.LabelFor(s => s.sube.ADI)
+        @Html.TextBoxFor(s => s.sube.ADI, new { @class = "form-control" })
+        @Html.ValidationMessageFor(s => s.sube.ADI)
+        <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+    </div>
+        <input type="submit" name="btnKaydet" value="Kaydet" class="btn btn-danger" onclick="return BoslukKontrol()" />
+    }
+</div>
+@Html.Partial("pvSubeList")
+@section scripts{
+    <script>
+       function BoslukKontrol() {
+           var hatayok = true;
+           if ($("#sube_ADI").val() == "") {
+               $("#lblAdHata").show();
+               hatayok = false;
+           }
+           return hatayok;
+        }
+
+    </script>
+}

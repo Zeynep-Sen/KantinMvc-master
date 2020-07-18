@@ -1,0 +1,50 @@
+﻿@model KantinMvc.Models.OnViewModel.OnViewMarka
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th>Marka Adı</th>
+            <th>İşlemler</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Markalar)
+        {
+        <tr>
+            @if (item.SILINDI == false)
+            {
+                <td>@item.MARKA1</td>
+            <td>
+    <a href="/Marka/MarkaGuncelle/@item.ID" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">Guncelle</a>
+    <a href="/Marka/MarkaSil/@item.ID" class="btn btn-danger" onclick="return confirm('Bu Markayı silmek istediğinize emin misiniz?')">Sil</a>
+
+            </td>
+            }   
+                </tr>
+        }
+
+
+    </tbody>
+
+</table>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Marka Güncelle.</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

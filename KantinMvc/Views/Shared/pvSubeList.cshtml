@@ -1,0 +1,28 @@
+﻿<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th>Sube Adı</th>
+            <th>İşlem Tarihi</th>
+            <th>İşlemler</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Subeler)
+        {
+        <tr>
+            <td>@item.ADI</td>
+            <td>@item.ISLEMTARIHI</td>
+            <td>
+                <a href="/Sube/SubeGuncelle/@item.ID" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">Guncelle</a>
+                <a href="/Sube/SubeSil/@item.ID" class="btn btn-danger" onclick="return confirm('Bu Şubeyi silmek istediğinize emin misiniz?')">Sil</a>
+
+            </td>
+        </tr>
+        }
+
+
+    </tbody>
+
+</table>

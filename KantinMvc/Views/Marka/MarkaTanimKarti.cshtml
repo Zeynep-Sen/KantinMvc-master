@@ -1,0 +1,88 @@
+﻿@model KantinMvc.Models.OnViewModel.OnViewMarka
+
+@{
+    ViewBag.Title = "MarkaTanimKarti";
+}
+<div>
+    <h2 class="display-4" style="color:lightseagreen">Marka İşlemleri</h2>
+</div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModals">
+    Yeni Marka Ekle
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color:lightseagreen">Marka Ekle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.marka.MARKA1)
+                    @Html.TextBoxFor(m => m.marka.MARKA1, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.marka.MARKA1)
+                    <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    <input type="submit" name="btnKaydet" value="Kaydet" class="btn btn-primary" onclick="markaEkle()" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="dvMarkaList">
+    @Html.Partial("pvMarkaList")
+</div>
+@section scripts{
+    <script>
+        function BoslukKontrol() {
+            var hatayok = true;
+            if ($("#marka_MARKA1").val() == "") {
+                $("#lblAdHata").show();
+                hatayok = false;
+            }
+            return hatayok;
+        }
+        function markaEkle() {
+            //if (BoslukKontrol) {
+            $.ajax({
+                url: "/Marka/MarkaEkle",
+                method: "Post",
+                data: {
+                    MARKA1: $("#marka_MARKA1").val()
+                },
+                success: function (data) {
+                    if (data == 'True') {
+                        alert("Marka Ekleme İşlemi Başarılı")
+                        $("#lblAdHata").hide();
+                        $.ajax({
+                            url: "/Marka/MarkaTanimKarti",
+                            method: "Get",
+                            success: function (data) {
+                                $("#dvMarkaList").html(data);
+                            }
+                        });
+                    }
+                    else {
+                        alert("Marka Ekleme İşlemi Başarısız")
+                        $("#lblAdHata").show();
+                    }
+                }
+
+            });
+            //}
+
+
+        }
+
+    </script>
+}

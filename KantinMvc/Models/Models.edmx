@@ -1,0 +1,1170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KANTINModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CARIKART">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CARIKOD" Type="nvarchar" MaxLength="20" />
+          <Property Name="UNVAN" Type="nvarchar" MaxLength="200" />
+          <Property Name="ADISOYADI" Type="nvarchar" MaxLength="100" />
+          <Property Name="ADRES" Type="nvarchar" MaxLength="200" />
+          <Property Name="TELEFON" Type="nvarchar" MaxLength="20" />
+          <Property Name="FAKS" Type="nvarchar" MaxLength="20" />
+          <Property Name="ILCE" Type="nvarchar" MaxLength="20" />
+          <Property Name="IL" Type="nvarchar" MaxLength="20" />
+          <Property Name="VERGIDAIRESI" Type="nvarchar" MaxLength="20" />
+          <Property Name="VERGINO" Type="nvarchar" MaxLength="11" />
+          <Property Name="ISLEMTARIHI" Type="datetime" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="FATURA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SUBE_ID" Type="int" />
+          <Property Name="CARI_ID" Type="int" />
+          <Property Name="FATURATARIHI" Type="datetime" />
+          <Property Name="FATURANO" Type="nvarchar" MaxLength="50" />
+          <Property Name="ISLEMTARIHI" Type="datetime" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="FATURADETAY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FATURA_ID" Type="int" />
+          <Property Name="URUN_ID" Type="int" />
+          <Property Name="BARKOD" Type="nvarchar" MaxLength="15" />
+          <Property Name="URUNADI" Type="nvarchar" MaxLength="100" />
+          <Property Name="KDVORANI" Type="int" />
+          <Property Name="ADET" Type="int" />
+          <Property Name="BIRIMFIYAT" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ARATOPLAM" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KDVTOPLAM" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GENELTOPLAM" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="HARCAMABONUS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TUTAR" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BONUS" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="KASA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SICIL_ID" Type="int" />
+          <Property Name="ODEMETIPI_ID" Type="int" />
+          <Property Name="POSISLEMNO" Type="nvarchar" MaxLength="250" />
+          <Property Name="TARIH" Type="datetime" />
+          <Property Name="TUTAR" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SILINDI" Type="bit" />
+          <Property Name="KULLANICIADI" Type="nvarchar" MaxLength="50" />
+          <Property Name="SIL_TARIH" Type="datetime" />
+          <Property Name="SIL_KULLANICIADI" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="KULLANICILAR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SUBE_ID" Type="int" />
+          <Property Name="KULLANICITIPI_ID" Type="int" />
+          <Property Name="KULLANICIADI" Type="nvarchar" MaxLength="50" />
+          <Property Name="SIFRE" Type="nvarchar" MaxLength="10" />
+          <Property Name="AKTIF" Type="bit" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="KULLANICITIPI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ADI" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LOG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MERKEZ_ID" Type="int" Nullable="false" />
+          <Property Name="SUBE_ID" Type="int" Nullable="false" />
+          <Property Name="KULLANICI_ID" Type="int" Nullable="false" />
+          <Property Name="ISLEMTIPI_ID" Type="int" Nullable="false" />
+          <Property Name="ISLEMTABLE_ID" Type="int" Nullable="false" />
+          <Property Name="KAYIT_ID" Type="int" Nullable="false" />
+          <Property Name="TARIH" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOGISLEMTIPI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ACIKLAMA" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LOGSAYFA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KULLANICI_ADI" Type="nvarchar" MaxLength="50" />
+          <Property Name="SAYFA_ADI" Type="nvarchar" MaxLength="50" />
+          <Property Name="ACIKLAMA" Type="nvarchar" MaxLength="150" />
+          <Property Name="IP" Type="nvarchar" MaxLength="200" />
+          <Property Name="MAC" Type="nvarchar" MaxLength="200" />
+          <Property Name="TARIH" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MARKA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MARKA" Type="nvarchar" MaxLength="50" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="MENUFIYAT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SUBE_ID" Type="int" />
+          <Property Name="MENU_ID" Type="int" />
+          <Property Name="URUN_ID" Type="int" />
+          <Property Name="FIYAT" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="MENUTANIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ADI" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ODEMETIPI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ODEMETIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="OLCUBIRIMI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ADI" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ISLEMTARIHI" Type="datetime" Nullable="false" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="PARAMETRE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IP1" Type="nvarchar" MaxLength="50" />
+          <Property Name="ADI1" Type="nvarchar" MaxLength="20" />
+          <Property Name="IP2" Type="nvarchar" MaxLength="50" />
+          <Property Name="ADI2" Type="nvarchar" MaxLength="20" />
+          <Property Name="IP3" Type="nvarchar" MaxLength="50" />
+          <Property Name="ADI3" Type="nvarchar" MaxLength="20" />
+          <Property Name="IP4" Type="nvarchar" MaxLength="50" />
+          <Property Name="ADI4" Type="nvarchar" MaxLength="20" />
+          <Property Name="KART" Type="bit" />
+          <Property Name="PI" Type="bit" />
+          <Property Name="NOGIRISIZNI" Type="bit" />
+          <Property Name="BAKIYE_SMS" Type="bit" />
+          <Property Name="EKSIBAKIYESATIS" Type="bit" />
+          <Property Name="FISYUKLEME" Type="bit" />
+          <Property Name="FISHARCAMA" Type="bit" />
+          <Property Name="YUKLEMEBONUS" Type="bit" />
+          <Property Name="HARCAMABONUS" Type="bit" />
+          <Property Name="PARABIRIMI" Type="nvarchar" MaxLength="3" />
+          <Property Name="YUKLEMESIL" Type="bit" />
+        </EntityType>
+        <EntityType Name="SICILKARTI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SUBE_ID" Type="int" />
+          <Property Name="NO" Type="int" />
+          <Property Name="TC" Type="nvarchar" MaxLength="11" />
+          <Property Name="ADI" Type="nvarchar" MaxLength="50" />
+          <Property Name="SOYADI" Type="nvarchar" MaxLength="50" />
+          <Property Name="SINIF_ID" Type="int" />
+          <Property Name="CEPTEL" Type="nvarchar" MaxLength="15" />
+          <Property Name="PI_ID" Type="int" />
+          <Property Name="RFKART_ID" Type="int" />
+          <Property Name="VELIADISOYADI" Type="nvarchar" MaxLength="50" />
+          <Property Name="VELICEPTEL" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="HARCAMALIMITI" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BAKIYE" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ISLEMTARIHI" Type="datetime" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="SINIF">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sinif" Type="nvarchar" MaxLength="150" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="SIPARIS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SUBE_ID" Type="int" />
+          <Property Name="SICIL_ID" Type="int" Nullable="false" />
+          <Property Name="SIPARISTIPI_ID" Type="int" Nullable="false" />
+          <Property Name="ODEMETIPI_ID" Type="int" />
+          <Property Name="SIPARISTARIHI" Type="datetime" Nullable="false" />
+          <Property Name="ONAY" Type="bit" />
+          <Property Name="NOTLAR" Type="nvarchar" MaxLength="250" />
+          <Property Name="GENELTOPLAM" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ISLEMTARIHI" Type="datetime" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="SIPARISDETAY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SUBE_ID" Type="int" />
+          <Property Name="Sip_ID" Type="int" Nullable="false" />
+          <Property Name="URUN_ID" Type="int" />
+          <Property Name="ADET" Type="int" />
+          <Property Name="TUTAR" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GENELTUTAR" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ISLEMTARIHI" Type="datetime" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="SiteSenkronlar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KayitId" Type="int" Nullable="false" />
+          <Property Name="KayitTipi" Type="nvarchar" MaxLength="55" Nullable="false" />
+          <Property Name="YollandiMi" Type="bit" Nullable="false" />
+          <Property Name="SilindiMi" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STOKHAR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URUN_ID" Type="int" />
+          <Property Name="TARIH" Type="datetime" />
+          <Property Name="ADET" Type="int" />
+          <Property Name="ALISFIYATI" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GENELTOPLAM" Type="nchar" MaxLength="10" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="STOKKARTI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SUBE_ID" Type="int" />
+          <Property Name="BARKOD" Type="nvarchar" MaxLength="15" />
+          <Property Name="ADI" Type="nvarchar" MaxLength="50" />
+          <Property Name="URUNGRUBU_ID" Type="int" />
+          <Property Name="BIRIM" Type="nvarchar" MaxLength="20" />
+          <Property Name="MARKA_ID" Type="int" />
+          <Property Name="KDVORANI" Type="int" />
+          <Property Name="KDVDAHIL" Type="bit" />
+          <Property Name="SATISFIYATI1" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SATISFIYATI2" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MAKSTOK" Type="int" />
+          <Property Name="MINSTOK" Type="int" />
+          <Property Name="STOKADET" Type="int" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="SUBE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ADI" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ISLEMTARIHI" Type="datetime" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="URUNGRUBU">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URUNGRUB" Type="nvarchar" MaxLength="150" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="URUNKISIT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SICIL_ID" Type="int" />
+          <Property Name="URUN_ID" Type="int" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <EntityType Name="YUKLEMEBONUS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TUTAR" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BONUS" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SILINDI" Type="bit" />
+        </EntityType>
+        <Association Name="FK_LOG_ISLEMTIPI">
+          <End Role="LOGISLEMTIPI" Type="Self.LOGISLEMTIPI" Multiplicity="1" />
+          <End Role="LOG" Type="Self.LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOGISLEMTIPI">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LOG">
+              <PropertyRef Name="ISLEMTIPI_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOG_MERKEZ">
+          <End Role="SUBE" Type="Self.SUBE" Multiplicity="1" />
+          <End Role="LOG" Type="Self.LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUBE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LOG">
+              <PropertyRef Name="SUBE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KANTINModelStoreContainer">
+          <EntitySet Name="CARIKART" EntityType="Self.CARIKART" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FATURA" EntityType="Self.FATURA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FATURADETAY" EntityType="Self.FATURADETAY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HARCAMABONUS" EntityType="Self.HARCAMABONUS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KASA" EntityType="Self.KASA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KULLANICILAR" EntityType="Self.KULLANICILAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KULLANICITIPI" EntityType="Self.KULLANICITIPI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOG" EntityType="Self.LOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOGISLEMTIPI" EntityType="Self.LOGISLEMTIPI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOGSAYFA" EntityType="Self.LOGSAYFA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MARKA" EntityType="Self.MARKA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MENUFIYAT" EntityType="Self.MENUFIYAT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MENUTANIM" EntityType="Self.MENUTANIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ODEMETIPI" EntityType="Self.ODEMETIPI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OLCUBIRIMI" EntityType="Self.OLCUBIRIMI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PARAMETRE" EntityType="Self.PARAMETRE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SICILKARTI" EntityType="Self.SICILKARTI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SINIF" EntityType="Self.SINIF" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIPARIS" EntityType="Self.SIPARIS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIPARISDETAY" EntityType="Self.SIPARISDETAY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiteSenkronlar" EntityType="Self.SiteSenkronlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STOKHAR" EntityType="Self.STOKHAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STOKKARTI" EntityType="Self.STOKKARTI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUBE" EntityType="Self.SUBE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="URUNGRUBU" EntityType="Self.URUNGRUBU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="URUNKISIT" EntityType="Self.URUNKISIT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YUKLEMEBONUS" EntityType="Self.YUKLEMEBONUS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_LOG_ISLEMTIPI" Association="Self.FK_LOG_ISLEMTIPI">
+            <End Role="LOGISLEMTIPI" EntitySet="LOGISLEMTIPI" />
+            <End Role="LOG" EntitySet="LOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOG_MERKEZ" Association="Self.FK_LOG_MERKEZ">
+            <End Role="SUBE" EntitySet="SUBE" />
+            <End Role="LOG" EntitySet="LOG" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KANTINModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CARIKART">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CARIKOD" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UNVAN" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ADISOYADI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ADRES" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TELEFON" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FAKS" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ILCE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IL" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="VERGIDAIRESI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="VERGINO" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="ISLEMTARIHI" Type="DateTime" Precision="3" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="FATURA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SUBE_ID" Type="Int32" />
+          <Property Name="CARI_ID" Type="Int32" />
+          <Property Name="FATURATARIHI" Type="DateTime" Precision="3" />
+          <Property Name="FATURANO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ISLEMTARIHI" Type="DateTime" Precision="3" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="FATURADETAY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FATURA_ID" Type="Int32" />
+          <Property Name="URUN_ID" Type="Int32" />
+          <Property Name="BARKOD" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="URUNADI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="KDVORANI" Type="Int32" />
+          <Property Name="ADET" Type="Int32" />
+          <Property Name="BIRIMFIYAT" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ARATOPLAM" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KDVTOPLAM" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GENELTOPLAM" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="HARCAMABONUS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TUTAR" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BONUS" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="KASA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SICIL_ID" Type="Int32" />
+          <Property Name="ODEMETIPI_ID" Type="Int32" />
+          <Property Name="POSISLEMNO" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="TARIH" Type="DateTime" Precision="3" />
+          <Property Name="TUTAR" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SILINDI" Type="Boolean" />
+          <Property Name="KULLANICIADI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SIL_TARIH" Type="DateTime" Precision="3" />
+          <Property Name="SIL_KULLANICIADI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="KULLANICILAR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SUBE_ID" Type="Int32" />
+          <Property Name="KULLANICITIPI_ID" Type="Int32" />
+          <Property Name="KULLANICIADI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SIFRE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="AKTIF" Type="Boolean" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="KULLANICITIPI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LOG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MERKEZ_ID" Type="Int32" Nullable="false" />
+          <Property Name="SUBE_ID" Type="Int32" Nullable="false" />
+          <Property Name="KULLANICI_ID" Type="Int32" Nullable="false" />
+          <Property Name="ISLEMTIPI_ID" Type="Int32" Nullable="false" />
+          <Property Name="ISLEMTABLE_ID" Type="Int32" Nullable="false" />
+          <Property Name="KAYIT_ID" Type="Int32" Nullable="false" />
+          <Property Name="TARIH" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="LOGISLEMTIPI" Relationship="Self.FK_LOG_ISLEMTIPI" FromRole="LOG" ToRole="LOGISLEMTIPI" />
+          <NavigationProperty Name="SUBE" Relationship="Self.FK_LOG_MERKEZ" FromRole="LOG" ToRole="SUBE" />
+        </EntityType>
+        <EntityType Name="LOGISLEMTIPI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ACIKLAMA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LOG" Relationship="Self.FK_LOG_ISLEMTIPI" FromRole="LOGISLEMTIPI" ToRole="LOG" />
+        </EntityType>
+        <EntityType Name="LOGSAYFA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KULLANICI_ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SAYFA_ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ACIKLAMA" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MAC" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TARIH" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MARKA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MARKA1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="MENUFIYAT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SUBE_ID" Type="Int32" />
+          <Property Name="MENU_ID" Type="Int32" />
+          <Property Name="URUN_ID" Type="Int32" />
+          <Property Name="FIYAT" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="MENUTANIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ODEMETIPI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ODEMETIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="OLCUBIRIMI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADI" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ISLEMTARIHI" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="PARAMETRE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IP1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ADI1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IP2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ADI2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IP3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ADI3" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IP4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ADI4" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="KART" Type="Boolean" />
+          <Property Name="PI" Type="Boolean" />
+          <Property Name="NOGIRISIZNI" Type="Boolean" />
+          <Property Name="BAKIYE_SMS" Type="Boolean" />
+          <Property Name="EKSIBAKIYESATIS" Type="Boolean" />
+          <Property Name="FISYUKLEME" Type="Boolean" />
+          <Property Name="FISHARCAMA" Type="Boolean" />
+          <Property Name="YUKLEMEBONUS" Type="Boolean" />
+          <Property Name="HARCAMABONUS" Type="Boolean" />
+          <Property Name="PARABIRIMI" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="YUKLEMESIL" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SICILKARTI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SUBE_ID" Type="Int32" />
+          <Property Name="NO" Type="Int32" />
+          <Property Name="TC" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SOYADI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SINIF_ID" Type="Int32" />
+          <Property Name="CEPTEL" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PI_ID" Type="Int32" />
+          <Property Name="RFKART_ID" Type="Int32" />
+          <Property Name="VELIADISOYADI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VELICEPTEL" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HARCAMALIMITI" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BAKIYE" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ISLEMTARIHI" Type="DateTime" Precision="3" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SINIF">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sinif1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SIPARIS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SUBE_ID" Type="Int32" />
+          <Property Name="SICIL_ID" Type="Int32" Nullable="false" />
+          <Property Name="SIPARISTIPI_ID" Type="Int32" Nullable="false" />
+          <Property Name="ODEMETIPI_ID" Type="Int32" />
+          <Property Name="SIPARISTARIHI" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ONAY" Type="Boolean" />
+          <Property Name="NOTLAR" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="GENELTOPLAM" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ISLEMTARIHI" Type="DateTime" Precision="3" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SIPARISDETAY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SUBE_ID" Type="Int32" />
+          <Property Name="Sip_ID" Type="Int32" Nullable="false" />
+          <Property Name="URUN_ID" Type="Int32" />
+          <Property Name="ADET" Type="Int32" />
+          <Property Name="TUTAR" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GENELTUTAR" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ISLEMTARIHI" Type="DateTime" Precision="3" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SiteSenkronlar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KayitId" Type="Int32" Nullable="false" />
+          <Property Name="KayitTipi" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="YollandiMi" Type="Boolean" Nullable="false" />
+          <Property Name="SilindiMi" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STOKHAR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URUN_ID" Type="Int32" />
+          <Property Name="TARIH" Type="DateTime" Precision="3" />
+          <Property Name="ADET" Type="Int32" />
+          <Property Name="ALISFIYATI" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GENELTOPLAM" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="STOKKARTI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SUBE_ID" Type="Int32" />
+          <Property Name="BARKOD" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="URUNGRUBU_ID" Type="Int32" />
+          <Property Name="BIRIM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MARKA_ID" Type="Int32" />
+          <Property Name="KDVORANI" Type="Int32" />
+          <Property Name="KDVDAHIL" Type="Boolean" />
+          <Property Name="SATISFIYATI1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SATISFIYATI2" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MAKSTOK" Type="Int32" />
+          <Property Name="MINSTOK" Type="Int32" />
+          <Property Name="STOKADET" Type="Int32" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SUBE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ISLEMTARIHI" Type="DateTime" Precision="3" />
+          <Property Name="SILINDI" Type="Boolean" />
+          <NavigationProperty Name="LOG" Relationship="Self.FK_LOG_MERKEZ" FromRole="SUBE" ToRole="LOG" />
+        </EntityType>
+        <EntityType Name="URUNGRUBU">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URUNGRUB" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="URUNKISIT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SICIL_ID" Type="Int32" />
+          <Property Name="URUN_ID" Type="Int32" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="YUKLEMEBONUS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TUTAR" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BONUS" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SILINDI" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_LOG_ISLEMTIPI">
+          <End Role="LOGISLEMTIPI" Type="Self.LOGISLEMTIPI" Multiplicity="1" />
+          <End Role="LOG" Type="Self.LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOGISLEMTIPI">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LOG">
+              <PropertyRef Name="ISLEMTIPI_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOG_MERKEZ">
+          <End Role="SUBE" Type="Self.SUBE" Multiplicity="1" />
+          <End Role="LOG" Type="Self.LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUBE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LOG">
+              <PropertyRef Name="SUBE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KantinContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CARIKART" EntityType="Self.CARIKART" />
+          <EntitySet Name="FATURA" EntityType="Self.FATURA" />
+          <EntitySet Name="FATURADETAY" EntityType="Self.FATURADETAY" />
+          <EntitySet Name="HARCAMABONUS" EntityType="Self.HARCAMABONUS" />
+          <EntitySet Name="KASA" EntityType="Self.KASA" />
+          <EntitySet Name="KULLANICILAR" EntityType="Self.KULLANICILAR" />
+          <EntitySet Name="KULLANICITIPI" EntityType="Self.KULLANICITIPI" />
+          <EntitySet Name="LOG" EntityType="Self.LOG" />
+          <EntitySet Name="LOGISLEMTIPI" EntityType="Self.LOGISLEMTIPI" />
+          <EntitySet Name="LOGSAYFA" EntityType="Self.LOGSAYFA" />
+          <EntitySet Name="MARKA" EntityType="Self.MARKA" />
+          <EntitySet Name="MENUFIYAT" EntityType="Self.MENUFIYAT" />
+          <EntitySet Name="MENUTANIM" EntityType="Self.MENUTANIM" />
+          <EntitySet Name="ODEMETIPI" EntityType="Self.ODEMETIPI" />
+          <EntitySet Name="OLCUBIRIMI" EntityType="Self.OLCUBIRIMI" />
+          <EntitySet Name="PARAMETRE" EntityType="Self.PARAMETRE" />
+          <EntitySet Name="SICILKARTI" EntityType="Self.SICILKARTI" />
+          <EntitySet Name="SINIF" EntityType="Self.SINIF" />
+          <EntitySet Name="SIPARIS" EntityType="Self.SIPARIS" />
+          <EntitySet Name="SIPARISDETAY" EntityType="Self.SIPARISDETAY" />
+          <EntitySet Name="SiteSenkronlar" EntityType="Self.SiteSenkronlar" />
+          <EntitySet Name="STOKHAR" EntityType="Self.STOKHAR" />
+          <EntitySet Name="STOKKARTI" EntityType="Self.STOKKARTI" />
+          <EntitySet Name="SUBE" EntityType="Self.SUBE" />
+          <EntitySet Name="URUNGRUBU" EntityType="Self.URUNGRUBU" />
+          <EntitySet Name="URUNKISIT" EntityType="Self.URUNKISIT" />
+          <EntitySet Name="YUKLEMEBONUS" EntityType="Self.YUKLEMEBONUS" />
+          <AssociationSet Name="FK_LOG_ISLEMTIPI" Association="Self.FK_LOG_ISLEMTIPI">
+            <End Role="LOGISLEMTIPI" EntitySet="LOGISLEMTIPI" />
+            <End Role="LOG" EntitySet="LOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOG_MERKEZ" Association="Self.FK_LOG_MERKEZ">
+            <End Role="SUBE" EntitySet="SUBE" />
+            <End Role="LOG" EntitySet="LOG" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KANTINModelStoreContainer" CdmEntityContainer="KantinContext">
+          <EntitySetMapping Name="CARIKART">
+            <EntityTypeMapping TypeName="KANTINModel.CARIKART">
+              <MappingFragment StoreEntitySet="CARIKART">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CARIKOD" ColumnName="CARIKOD" />
+                <ScalarProperty Name="UNVAN" ColumnName="UNVAN" />
+                <ScalarProperty Name="ADISOYADI" ColumnName="ADISOYADI" />
+                <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+                <ScalarProperty Name="TELEFON" ColumnName="TELEFON" />
+                <ScalarProperty Name="FAKS" ColumnName="FAKS" />
+                <ScalarProperty Name="ILCE" ColumnName="ILCE" />
+                <ScalarProperty Name="IL" ColumnName="IL" />
+                <ScalarProperty Name="VERGIDAIRESI" ColumnName="VERGIDAIRESI" />
+                <ScalarProperty Name="VERGINO" ColumnName="VERGINO" />
+                <ScalarProperty Name="ISLEMTARIHI" ColumnName="ISLEMTARIHI" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FATURA">
+            <EntityTypeMapping TypeName="KANTINModel.FATURA">
+              <MappingFragment StoreEntitySet="FATURA">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SUBE_ID" ColumnName="SUBE_ID" />
+                <ScalarProperty Name="CARI_ID" ColumnName="CARI_ID" />
+                <ScalarProperty Name="FATURATARIHI" ColumnName="FATURATARIHI" />
+                <ScalarProperty Name="FATURANO" ColumnName="FATURANO" />
+                <ScalarProperty Name="ISLEMTARIHI" ColumnName="ISLEMTARIHI" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FATURADETAY">
+            <EntityTypeMapping TypeName="KANTINModel.FATURADETAY">
+              <MappingFragment StoreEntitySet="FATURADETAY">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FATURA_ID" ColumnName="FATURA_ID" />
+                <ScalarProperty Name="URUN_ID" ColumnName="URUN_ID" />
+                <ScalarProperty Name="BARKOD" ColumnName="BARKOD" />
+                <ScalarProperty Name="URUNADI" ColumnName="URUNADI" />
+                <ScalarProperty Name="KDVORANI" ColumnName="KDVORANI" />
+                <ScalarProperty Name="ADET" ColumnName="ADET" />
+                <ScalarProperty Name="BIRIMFIYAT" ColumnName="BIRIMFIYAT" />
+                <ScalarProperty Name="ARATOPLAM" ColumnName="ARATOPLAM" />
+                <ScalarProperty Name="KDVTOPLAM" ColumnName="KDVTOPLAM" />
+                <ScalarProperty Name="GENELTOPLAM" ColumnName="GENELTOPLAM" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HARCAMABONUS">
+            <EntityTypeMapping TypeName="KANTINModel.HARCAMABONUS">
+              <MappingFragment StoreEntitySet="HARCAMABONUS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TUTAR" ColumnName="TUTAR" />
+                <ScalarProperty Name="BONUS" ColumnName="BONUS" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KASA">
+            <EntityTypeMapping TypeName="KANTINModel.KASA">
+              <MappingFragment StoreEntitySet="KASA">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SICIL_ID" ColumnName="SICIL_ID" />
+                <ScalarProperty Name="ODEMETIPI_ID" ColumnName="ODEMETIPI_ID" />
+                <ScalarProperty Name="POSISLEMNO" ColumnName="POSISLEMNO" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+                <ScalarProperty Name="TUTAR" ColumnName="TUTAR" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+                <ScalarProperty Name="KULLANICIADI" ColumnName="KULLANICIADI" />
+                <ScalarProperty Name="SIL_TARIH" ColumnName="SIL_TARIH" />
+                <ScalarProperty Name="SIL_KULLANICIADI" ColumnName="SIL_KULLANICIADI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KULLANICILAR">
+            <EntityTypeMapping TypeName="KANTINModel.KULLANICILAR">
+              <MappingFragment StoreEntitySet="KULLANICILAR">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SUBE_ID" ColumnName="SUBE_ID" />
+                <ScalarProperty Name="KULLANICITIPI_ID" ColumnName="KULLANICITIPI_ID" />
+                <ScalarProperty Name="KULLANICIADI" ColumnName="KULLANICIADI" />
+                <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+                <ScalarProperty Name="AKTIF" ColumnName="AKTIF" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KULLANICITIPI">
+            <EntityTypeMapping TypeName="KANTINModel.KULLANICITIPI">
+              <MappingFragment StoreEntitySet="KULLANICITIPI">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ADI" ColumnName="ADI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOG">
+            <EntityTypeMapping TypeName="KANTINModel.LOG">
+              <MappingFragment StoreEntitySet="LOG">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MERKEZ_ID" ColumnName="MERKEZ_ID" />
+                <ScalarProperty Name="SUBE_ID" ColumnName="SUBE_ID" />
+                <ScalarProperty Name="KULLANICI_ID" ColumnName="KULLANICI_ID" />
+                <ScalarProperty Name="ISLEMTIPI_ID" ColumnName="ISLEMTIPI_ID" />
+                <ScalarProperty Name="ISLEMTABLE_ID" ColumnName="ISLEMTABLE_ID" />
+                <ScalarProperty Name="KAYIT_ID" ColumnName="KAYIT_ID" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOGISLEMTIPI">
+            <EntityTypeMapping TypeName="KANTINModel.LOGISLEMTIPI">
+              <MappingFragment StoreEntitySet="LOGISLEMTIPI">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ACIKLAMA" ColumnName="ACIKLAMA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOGSAYFA">
+            <EntityTypeMapping TypeName="KANTINModel.LOGSAYFA">
+              <MappingFragment StoreEntitySet="LOGSAYFA">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="KULLANICI_ADI" ColumnName="KULLANICI_ADI" />
+                <ScalarProperty Name="SAYFA_ADI" ColumnName="SAYFA_ADI" />
+                <ScalarProperty Name="ACIKLAMA" ColumnName="ACIKLAMA" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="MAC" ColumnName="MAC" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MARKA">
+            <EntityTypeMapping TypeName="KANTINModel.MARKA">
+              <MappingFragment StoreEntitySet="MARKA">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MARKA1" ColumnName="MARKA" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENUFIYAT">
+            <EntityTypeMapping TypeName="KANTINModel.MENUFIYAT">
+              <MappingFragment StoreEntitySet="MENUFIYAT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SUBE_ID" ColumnName="SUBE_ID" />
+                <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+                <ScalarProperty Name="URUN_ID" ColumnName="URUN_ID" />
+                <ScalarProperty Name="FIYAT" ColumnName="FIYAT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENUTANIM">
+            <EntityTypeMapping TypeName="KANTINModel.MENUTANIM">
+              <MappingFragment StoreEntitySet="MENUTANIM">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ADI" ColumnName="ADI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ODEMETIPI">
+            <EntityTypeMapping TypeName="KANTINModel.ODEMETIPI">
+              <MappingFragment StoreEntitySet="ODEMETIPI">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ODEMETIP" ColumnName="ODEMETIP" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OLCUBIRIMI">
+            <EntityTypeMapping TypeName="KANTINModel.OLCUBIRIMI">
+              <MappingFragment StoreEntitySet="OLCUBIRIMI">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ADI" ColumnName="ADI" />
+                <ScalarProperty Name="ISLEMTARIHI" ColumnName="ISLEMTARIHI" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PARAMETRE">
+            <EntityTypeMapping TypeName="KANTINModel.PARAMETRE">
+              <MappingFragment StoreEntitySet="PARAMETRE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IP1" ColumnName="IP1" />
+                <ScalarProperty Name="ADI1" ColumnName="ADI1" />
+                <ScalarProperty Name="IP2" ColumnName="IP2" />
+                <ScalarProperty Name="ADI2" ColumnName="ADI2" />
+                <ScalarProperty Name="IP3" ColumnName="IP3" />
+                <ScalarProperty Name="ADI3" ColumnName="ADI3" />
+                <ScalarProperty Name="IP4" ColumnName="IP4" />
+                <ScalarProperty Name="ADI4" ColumnName="ADI4" />
+                <ScalarProperty Name="KART" ColumnName="KART" />
+                <ScalarProperty Name="PI" ColumnName="PI" />
+                <ScalarProperty Name="NOGIRISIZNI" ColumnName="NOGIRISIZNI" />
+                <ScalarProperty Name="BAKIYE_SMS" ColumnName="BAKIYE_SMS" />
+                <ScalarProperty Name="EKSIBAKIYESATIS" ColumnName="EKSIBAKIYESATIS" />
+                <ScalarProperty Name="FISYUKLEME" ColumnName="FISYUKLEME" />
+                <ScalarProperty Name="FISHARCAMA" ColumnName="FISHARCAMA" />
+                <ScalarProperty Name="YUKLEMEBONUS" ColumnName="YUKLEMEBONUS" />
+                <ScalarProperty Name="HARCAMABONUS" ColumnName="HARCAMABONUS" />
+                <ScalarProperty Name="PARABIRIMI" ColumnName="PARABIRIMI" />
+                <ScalarProperty Name="YUKLEMESIL" ColumnName="YUKLEMESIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SICILKARTI">
+            <EntityTypeMapping TypeName="KANTINModel.SICILKARTI">
+              <MappingFragment StoreEntitySet="SICILKARTI">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SUBE_ID" ColumnName="SUBE_ID" />
+                <ScalarProperty Name="NO" ColumnName="NO" />
+                <ScalarProperty Name="TC" ColumnName="TC" />
+                <ScalarProperty Name="ADI" ColumnName="ADI" />
+                <ScalarProperty Name="SOYADI" ColumnName="SOYADI" />
+                <ScalarProperty Name="SINIF_ID" ColumnName="SINIF_ID" />
+                <ScalarProperty Name="CEPTEL" ColumnName="CEPTEL" />
+                <ScalarProperty Name="PI_ID" ColumnName="PI_ID" />
+                <ScalarProperty Name="RFKART_ID" ColumnName="RFKART_ID" />
+                <ScalarProperty Name="VELIADISOYADI" ColumnName="VELIADISOYADI" />
+                <ScalarProperty Name="VELICEPTEL" ColumnName="VELICEPTEL" />
+                <ScalarProperty Name="HARCAMALIMITI" ColumnName="HARCAMALIMITI" />
+                <ScalarProperty Name="BAKIYE" ColumnName="BAKIYE" />
+                <ScalarProperty Name="ISLEMTARIHI" ColumnName="ISLEMTARIHI" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SINIF">
+            <EntityTypeMapping TypeName="KANTINModel.SINIF">
+              <MappingFragment StoreEntitySet="SINIF">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Sinif1" ColumnName="Sinif" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIPARIS">
+            <EntityTypeMapping TypeName="KANTINModel.SIPARIS">
+              <MappingFragment StoreEntitySet="SIPARIS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SUBE_ID" ColumnName="SUBE_ID" />
+                <ScalarProperty Name="SICIL_ID" ColumnName="SICIL_ID" />
+                <ScalarProperty Name="SIPARISTIPI_ID" ColumnName="SIPARISTIPI_ID" />
+                <ScalarProperty Name="ODEMETIPI_ID" ColumnName="ODEMETIPI_ID" />
+                <ScalarProperty Name="SIPARISTARIHI" ColumnName="SIPARISTARIHI" />
+                <ScalarProperty Name="ONAY" ColumnName="ONAY" />
+                <ScalarProperty Name="NOTLAR" ColumnName="NOTLAR" />
+                <ScalarProperty Name="GENELTOPLAM" ColumnName="GENELTOPLAM" />
+                <ScalarProperty Name="ISLEMTARIHI" ColumnName="ISLEMTARIHI" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIPARISDETAY">
+            <EntityTypeMapping TypeName="KANTINModel.SIPARISDETAY">
+              <MappingFragment StoreEntitySet="SIPARISDETAY">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SUBE_ID" ColumnName="SUBE_ID" />
+                <ScalarProperty Name="Sip_ID" ColumnName="Sip_ID" />
+                <ScalarProperty Name="URUN_ID" ColumnName="URUN_ID" />
+                <ScalarProperty Name="ADET" ColumnName="ADET" />
+                <ScalarProperty Name="TUTAR" ColumnName="TUTAR" />
+                <ScalarProperty Name="GENELTUTAR" ColumnName="GENELTUTAR" />
+                <ScalarProperty Name="ISLEMTARIHI" ColumnName="ISLEMTARIHI" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiteSenkronlar">
+            <EntityTypeMapping TypeName="KANTINModel.SiteSenkronlar">
+              <MappingFragment StoreEntitySet="SiteSenkronlar">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="KayitId" ColumnName="KayitId" />
+                <ScalarProperty Name="KayitTipi" ColumnName="KayitTipi" />
+                <ScalarProperty Name="YollandiMi" ColumnName="YollandiMi" />
+                <ScalarProperty Name="SilindiMi" ColumnName="SilindiMi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STOKHAR">
+            <EntityTypeMapping TypeName="KANTINModel.STOKHAR">
+              <MappingFragment StoreEntitySet="STOKHAR">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="URUN_ID" ColumnName="URUN_ID" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+                <ScalarProperty Name="ADET" ColumnName="ADET" />
+                <ScalarProperty Name="ALISFIYATI" ColumnName="ALISFIYATI" />
+                <ScalarProperty Name="GENELTOPLAM" ColumnName="GENELTOPLAM" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STOKKARTI">
+            <EntityTypeMapping TypeName="KANTINModel.STOKKARTI">
+              <MappingFragment StoreEntitySet="STOKKARTI">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SUBE_ID" ColumnName="SUBE_ID" />
+                <ScalarProperty Name="BARKOD" ColumnName="BARKOD" />
+                <ScalarProperty Name="ADI" ColumnName="ADI" />
+                <ScalarProperty Name="URUNGRUBU_ID" ColumnName="URUNGRUBU_ID" />
+                <ScalarProperty Name="BIRIM" ColumnName="BIRIM" />
+                <ScalarProperty Name="MARKA_ID" ColumnName="MARKA_ID" />
+                <ScalarProperty Name="KDVORANI" ColumnName="KDVORANI" />
+                <ScalarProperty Name="KDVDAHIL" ColumnName="KDVDAHIL" />
+                <ScalarProperty Name="SATISFIYATI1" ColumnName="SATISFIYATI1" />
+                <ScalarProperty Name="SATISFIYATI2" ColumnName="SATISFIYATI2" />
+                <ScalarProperty Name="MAKSTOK" ColumnName="MAKSTOK" />
+                <ScalarProperty Name="MINSTOK" ColumnName="MINSTOK" />
+                <ScalarProperty Name="STOKADET" ColumnName="STOKADET" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUBE">
+            <EntityTypeMapping TypeName="KANTINModel.SUBE">
+              <MappingFragment StoreEntitySet="SUBE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ADI" ColumnName="ADI" />
+                <ScalarProperty Name="ISLEMTARIHI" ColumnName="ISLEMTARIHI" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="URUNGRUBU">
+            <EntityTypeMapping TypeName="KANTINModel.URUNGRUBU">
+              <MappingFragment StoreEntitySet="URUNGRUBU">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="URUNGRUB" ColumnName="URUNGRUB" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="URUNKISIT">
+            <EntityTypeMapping TypeName="KANTINModel.URUNKISIT">
+              <MappingFragment StoreEntitySet="URUNKISIT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SICIL_ID" ColumnName="SICIL_ID" />
+                <ScalarProperty Name="URUN_ID" ColumnName="URUN_ID" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YUKLEMEBONUS">
+            <EntityTypeMapping TypeName="KANTINModel.YUKLEMEBONUS">
+              <MappingFragment StoreEntitySet="YUKLEMEBONUS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TUTAR" ColumnName="TUTAR" />
+                <ScalarProperty Name="BONUS" ColumnName="BONUS" />
+                <ScalarProperty Name="SILINDI" ColumnName="SILINDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

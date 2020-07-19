@@ -1,0 +1,134 @@
+﻿@model KantinMvc.Models.CARIKART
+
+@{
+    ViewBag.Title = "CariGuncelle";
+}
+
+<h2>CariGuncelle</h2>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render()
+
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("CariGuncelle", "Cari", FormMethod.Post))
+        {               @Html.HiddenFor(m => m.ID)
+                        @Html.HiddenFor(m => m.ISLEMTARIHI)
+        <div class="form-group">
+            <form class="needs-validation" novalidate>
+
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                        @Html.LabelFor(c => c.CARIKOD)
+                        @Html.TextBoxFor(c => c.CARIKOD, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.CARIKOD)
+                        <div class="valid-tooltip">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+
+                        @Html.LabelFor(c => c.VERGINO)
+                        @Html.TextBoxFor(c => c.VERGINO, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.VERGINO)
+                        <div class="valid-tooltip">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        @Html.LabelFor(c => c.VERGIDAIRESI)
+                        @Html.TextBoxFor(c => c.VERGIDAIRESI, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.VERGIDAIRESI)
+                        <div class="invalid-tooltip">
+                            Please provide a valid city.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(c => c.ADISOYADI)
+                        @Html.TextBoxFor(c => c.ADISOYADI, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.ADISOYADI)
+                        <div class="invalid-tooltip">
+                            Please provide a valid city.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(c => c.UNVAN)
+                        @Html.TextBoxFor(c => c.UNVAN, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.UNVAN)
+                        <div class="invalid-tooltip">
+                            Please provide a valid city.
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-row">
+
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(c => c.IL)
+                        @Html.TextBoxFor(c => c.IL, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.IL)
+
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(c => c.ILCE)
+                        @Html.TextBoxFor(c => c.ILCE, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.ILCE)
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(c => c.TELEFON)
+                        @Html.TextBoxFor(c => c.TELEFON, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.TELEFON)
+
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(c => c.FAKS)
+                        @Html.TextBoxFor(c => c.FAKS, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.FAKS)
+                    </div>
+                </div>
+
+                <div class="form-row">
+
+                    <div class="col-md-6">
+                        @Html.LabelFor(c => c.ADRES)
+                        @Html.TextAreaFor(c => c.ADRES, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.ADRES)
+
+                        <div class="invalid-tooltip">
+                            Please select a valid state.
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+            <input type="submit" name="button" value="Güncelle" class="btn btn-primary" return onclick="BoslukKontrol()" />
+        </div>
+    }
+    </div>
+    <script>
+        function BoslukKontrol() {
+            var hatayok = true;
+            if ($("UNVAN").val() == "" || $("#ADRES").val() == "" || $("#IL").val() == "" || $("#ADISOYADI").val() == "" || $("#TELEFON").val() == "" || $("#FAKS").val() == "" || $("#ILCE").val() == "" || $("#VERGIDAIRESI").val() == "" || $("#VERGINO").val() == "" || $("#CARIKOD").val() == "") {
+                // $("#lblAdHata").show();
+                hatayok = false;
+            }
+            return hatayok;
+        }
+
+
+    </script>
+
+</body>
+</html>

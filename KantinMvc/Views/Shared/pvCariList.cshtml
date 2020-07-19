@@ -1,0 +1,44 @@
+﻿@model KantinMvc.Models.OnViewModel.OnViewCari
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Cari Kodu</th>
+                <th>Ad Soyad</th>
+                <th>Ünvan</th>
+                <th>İl</th>
+                <th>İlçe</th>
+                <th>Adres</th>
+                <th>Vergi Adresi</th>
+                <th>Vergi Numarası</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.Cariler)
+            {
+            <tr>
+                @if (item.SILINDI == false)
+                {
+                    <td>@item.CARIKOD</td>
+                    <td>@item.ADISOYADI</td>
+                    <td>@item.UNVAN</td>
+                    <td>@item.IL</td>
+                    <td>@item.ILCE</td>
+                    <td>@item.ADRES</td>
+                    <td>@item.VERGIDAIRESI</td>
+                    <td>@item.VERGINO</td>
+
+                    <td>
+                        <a href="/Cari/CariGuncelle/@item.ID" class="btn btn-sm btn-primary">Guncelle</a>
+                        <a href="/Cari/CariSil/@item.ID" class="btn btn-danger" onclick="return confirm('Bu Şubeyi silmek istediğinize emin misiniz?')">Sil</a>
+
+                    </td>
+                }
+            </tr>}
+
+
+        </tbody>
+
+    </table>

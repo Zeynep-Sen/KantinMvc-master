@@ -142,6 +142,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CariController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarkaController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Models\OLCUBIRIMI.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OnViewModel\OnViewCari.cs" />
     <Compile Include="Models\OnViewModel\OnViewMarka.cs" />
     <Compile Include="Models\OnViewModel\OnViewMenu.cs" />
     <Compile Include="Models\OnViewModel\OnViewSinif.cs" />
@@ -425,6 +427,9 @@
     <Content Include="Views\Shared\pvUrunGrupList.cshtml" />
     <Content Include="Views\Urun\UrunGrupTanimKarti.cshtml" />
     <Content Include="Views\Urun\UrunGrupGuncelle.cshtml" />
+    <Content Include="Views\Cari\CariTanimKarti.cshtml" />
+    <Content Include="Views\Shared\pvCariList.cshtml" />
+    <Content Include="Views\Cari\CariGuncelle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

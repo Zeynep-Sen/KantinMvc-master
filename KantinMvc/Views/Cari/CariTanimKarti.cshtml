@@ -1,0 +1,183 @@
+﻿@model KantinMvc.Models.OnViewModel.OnViewCari
+
+@{
+    ViewBag.Title = "CariTanimKarti";
+}
+
+<div>
+    <h2 class="display-4" style="color:lightseagreen">Cari Kart</h2>
+</div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CariEkle">
+    Cari Ekle
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="CariEkle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color:lightseagreen">Cari Kart </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <form class="needs-validation" novalidate>
+
+                        <div class="form-row">
+                            <div class="col-md-3 mb-3">
+                                @Html.LabelFor(c => c.cari.CARIKOD)
+                                @Html.TextBoxFor(c => c.cari.CARIKOD, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.cari.CARIKOD)
+                                <div class="valid-tooltip">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+
+                                @Html.LabelFor(c => c.cari.VERGINO)
+                                @Html.TextBoxFor(c => c.cari.VERGINO, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.cari.VERGINO)
+                                <div class="valid-tooltip">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                @Html.LabelFor(c => c.cari.VERGIDAIRESI)
+                                @Html.TextBoxFor(c => c.cari.VERGIDAIRESI, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.cari.VERGIDAIRESI)
+                                <div class="invalid-tooltip">
+                                    Please provide a valid city.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(c => c.cari.ADISOYADI)
+                                @Html.TextBoxFor(c => c.cari.ADISOYADI, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.cari.ADISOYADI)
+                                <div class="invalid-tooltip">
+                                    Please provide a valid city.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(c => c.cari.UNVAN)
+                                @Html.TextBoxFor(c => c.cari.UNVAN, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.cari.UNVAN)
+                                <div class="invalid-tooltip">
+                                    Please provide a valid city.
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(c => c.cari.IL)
+                                @Html.TextBoxFor(c => c.cari.IL, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.cari.IL)
+
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(c => c.cari.ILCE)
+                                @Html.TextBoxFor(c => c.cari.ILCE, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.cari.ILCE)
+                            </div>
+                        </div>
+                        <div class="form-row">
+
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(c => c.cari.TELEFON)
+                                @Html.TextBoxFor(c => c.cari.TELEFON, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.cari.TELEFON)
+
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(c => c.cari.FAKS)
+                                @Html.TextBoxFor(c => c.cari.FAKS, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.cari.FAKS)
+                            </div>
+                        </div>
+        
+                        <div class="form-row">
+
+                            <div class="col-md-6">
+                                @Html.LabelFor(c => c.cari.ADRES)
+                                @Html.TextAreaFor(c => c.cari.ADRES, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.cari.ADRES)
+
+                                <div class="invalid-tooltip">
+                                    Please select a valid state.
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                    
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    <input type="submit" name="btnKaydet" value="Kaydet" class="btn btn-primary" onclick="cariEkle()" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="dvCariList">
+   @Html.Partial("pvCariList")
+</div>
+@section scripts{
+    <script>function BoslukKontrol() {
+            var hatayok = true;
+    if   ($("#cari_UNVAN").val() == "" || $("cari_#ADRES").val() == "" || $("#cari_IL").val() == "" || $("#cari_ADISOYADI").val() == "" || $("#cari_TELEFON").val() == "" || $("#cari_FAKS").val() == "" || $("#cari_ILCE").val() == "" || $("#cari_VERGIDAIRESI").val() == "" || $("#cari_VERGINO").val() == "" || $("#cari_CARIKOD").val() == "") {
+               // $("#lblAdHata").show();
+                hatayok = false;
+            }
+            return hatayok;
+        }
+        function xariEkle() {
+            //if (BoslukKontrol) {
+            $.ajax({
+                url: "/Cari/CariEkle",
+                method: "Post",
+                data: {
+                    UNVAN : $("#cari_UNVAN").val(),
+                    ADISOYADI: $("#cari_ADISOYADI").val(),
+                    ADRES: $("#cari_ADRES").val(),
+                    TELEFON: $("#cari_TELEFON").val(),
+                    FAKS: $("#cari_FAKS").val(),
+                    ILCE: $("#cari_ILCE").val(),
+                    IL: $("#cari_IL").val(),
+                    VERGIDAIRESI: $("#cari_VERGIDAIRESI").val(),
+                    VERGINO: $("#cari_VERGINO").val(),
+                    CARIKOD: $("#cari_CARIKOD").val()
+                },
+                success: function (data) {
+                    if (data == 'True') {
+                        alert("Cari Ekleme İşlemi Başarılı")
+                        $("#lblAdHata").hide();
+                        $.ajax({
+                            url: "/Cari/CariTanimKarti",
+                            method: "Get",
+                            success: function (data) {
+                                $("#dvCariList").html(data);
+                            }
+                        });
+                    }
+                    else {
+                        alert("Cari Ekleme İşlemi Başarısız")
+                        $("#lblAdHata").show();
+                    }
+                }
+
+            });
+            //}
+
+
+        }</script>
+}

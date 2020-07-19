@@ -1,7 +1,4 @@
 ﻿
-@{
-    Layout = null;
-}
 @model KantinMvc.Models.MARKA
 
 @{
@@ -19,75 +16,71 @@
     <title>MarkaGuncelle</title>
 </head>
 <body>
-
-    <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style="color:lightseagreen; font:x-large; ">Marka Güncelle.</h5>
-    </div>
     <div>
-        <div class="modal-body">
-            <div class="modal-body">
+    @using (Html.BeginForm("MarkaGuncelle", "Marka", FormMethod.Post))
+    {
+            @Html.HiddenFor(m => m.ID)
+            @Html.LabelFor(m => m.MARKA1)
+            @Html.TextBoxFor(m => m.MARKA1, new { @class = "form-control" })
 
-                <div class="modal-body">
-                    @Html.HiddenFor(m => m.ID)
-                    @Html.LabelFor(m => m.MARKA1)
-                    @Html.TextBoxFor(m => m.MARKA1, new { @class = "form-control" })
-
-                    <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-                        <input type="submit" name="button" value="Güncelle" class="btn btn-primary" onclick="markaGuncelle()" />
-                    </div>
-
-
-                </div>
+            <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+            <div>
+                <input type="submit" name="button" value="Güncelle" class="btn btn-primary" return onclick="BoslukKontrol()" />
             </div>
+    }
         </div>
-
-
-
         <script>
-            //function BoslukKontrol() {
-            //    var hatayok = true;
-            //    if ($("#MARKA1").val() == "") {
-            //        $("#lblAdHata").show();
-            //        hatayok = false;
-            //    }
-            //    return hatayok;
-            //}
-
-            function markaGuncelle() {
-                console.log("asd")
-                $.ajax({
-                    url: "/Marka/MarkaGuncelle",
-                    method: "Post",
-                    data: {
-                        MARKA1: $("#MARKA1").val(),
-                        ID: $("#ID").val()
-                    },
-                    success: function (data) {
-                        console.log(data)
-                        if (data == 'True') {
-                            alert("Marka Güncelleme İşlemi Başarılı")
-                            $("#lblAdHata").hide();
-                            $.ajax({
-                                url: "/Marka/MarkaTanimKarti",
-                                method: "Get",
-                                success: function (data) {
-                                    $("#dvMarkaList").html(data);
-                                }
-                            });
-                        }
-                        else {
-                            alert("Marka Güncelleme İşlemi Başarısız")
-                            $("#lblAdHata").show();
-                        }
+                function BoslukKontrol() {
+                    var hatayok = true;
+                    if ($("#MARKA1").val() == "") {
+                        $("#lblAdHata").show();
+                        hatayok = false;
                     }
+                    return hatayok;
+                }
 
-                });
 
-            }
         </script>
 
-    </div>
+   
+
+
+
+
+    @*<script>
+        function markaGuncelle() {
+                   console.log("asd")
+                   $.ajax({
+                       url: "/Marka/MarkaGuncelle",
+                       method: "Post",
+                       data: {
+                           MARKA1: $("#MARKA1").val(),
+                           ID: $("#ID").val()
+                       },
+                       success: function (data) {
+                           console.log(data)
+                           if (data == 'True') {
+                               alert("Marka Güncelleme İşlemi Başarılı")
+                               $("#lblAdHata").hide();
+                               $.ajax({
+                                   url: "/Marka/MarkaTanimKarti",
+                                   method: "Get",
+                                   success: function (data) {
+                                       $("#dvMarkaList").html(data);
+                                   }
+                               });
+                           }
+                           else {
+                               alert("Marka Güncelleme İşlemi Başarısız")
+                               $("#lblAdHata").show();
+                           }
+                       }
+
+                   });
+
+               }
+           </script>*@
+
+
 </body>
 </html>

@@ -1,0 +1,89 @@
+﻿@model KantinMvc.Models.OnViewModel.OnViewMenu
+
+@{
+    ViewBag.Title = "MenuTanimKarti";
+}
+
+<div>
+    <h2 class="display-4" style="color:lightseagreen">Menü Tanımı</h2>
+</div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModals">
+    Yeni Menü Ekle
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color:lightseagreen">Menü Ekle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.menuTanim.ADI)
+                    @Html.TextBoxFor(m => m.menuTanim.ADI, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.menuTanim.ADI)
+                    <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    <input type="submit" name="btnKaydet" value="Kaydet" class="btn btn-primary" onclick="menuEkle()" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="dvMenuList">
+    @Html.Partial("pvMenuList")
+</div>
+@section scripts{
+    <script>
+        function BoslukKontrol() {
+            var hatayok = true;
+            if ($("#menuTanim_ADI").val() == "") {
+                $("#lblAdHata").show();
+                hatayok = false;
+            }
+            return hatayok;
+        }
+        function menuEkle() {
+            //if (BoslukKontrol) {
+            $.ajax({
+                url: "/Menu/MenuEkle",
+                method: "Post",
+                data: {
+                    ADI: $("#menuTanim_ADI").val()
+                },
+                success: function (data) {
+                    if (data == 'True') {
+                        alert("Menü Ekleme İşlemi Başarılı")
+                        $("#lblAdHata").hide();
+                        $.ajax({
+                            url: "/Menu/MenuTanimKarti",
+                            method: "Get",
+                            success: function (data) {
+                                $("#dvMenuList").html(data);
+                            }
+                        });
+                    }
+                    else {
+                        alert("Menü Ekleme İşlemi Başarısız")
+                        $("#lblAdHata").show();
+                    }
+                }
+
+            });
+            //}
+
+
+        }
+
+    </script>
+}

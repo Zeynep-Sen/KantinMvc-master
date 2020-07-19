@@ -64,7 +64,7 @@ namespace KantinMvc.Controllers
             return View(sube);
         }
         [HttpPost]
-        public bool SubeGuncelle(SUBE s)
+        public ActionResult SubeGuncelle(SUBE s)
         {
             bool basarili = false;
             try
@@ -86,7 +86,7 @@ namespace KantinMvc.Controllers
 
                 Response.Write(ex);
             }
-            return basarili;
+            return RedirectToAction("/SubeTanimKarti");
         }
         public ActionResult SubeSil(int? id)
         {

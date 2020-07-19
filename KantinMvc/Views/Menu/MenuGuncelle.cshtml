@@ -1,10 +1,10 @@
-﻿@model KantinMvc.Models.SUBE
+﻿@model KantinMvc.Models.MENUTANIM
 
 @{
-    ViewBag.Title = "SubeGuncelle";
+    ViewBag.Title = "MenuGuncelle";
 }
 
-<h2>SubeGuncelle</h2>
+<h2>Menu Guncelle</h2>
 
 <!DOCTYPE html>
 
@@ -15,14 +15,13 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render()
-  
+    <title>MarkaGuncelle</title>
 </head>
 <body>
     <div>
-        @using (Html.BeginForm("SubeGuncelle", "Sube", FormMethod.Post))
+        @using (Html.BeginForm("MenuGuncelle", "Menu", FormMethod.Post))
         {
             @Html.HiddenFor(m => m.ID)
-            @Html.HiddenFor(m => m.ISLEMTARIHI)
             @Html.LabelFor(m => m.ADI)
             @Html.TextBoxFor(m => m.ADI, new { @class = "form-control" })
 
@@ -45,5 +44,5 @@
 
     </script>
 
-</body>
+    </body>
 </html>

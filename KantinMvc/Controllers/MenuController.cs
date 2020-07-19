@@ -10,70 +10,62 @@ using System.Web.Mvc;
 
 namespace KantinMvc.Controllers
 {
-    public class MarkaController : Controller
+    public class MenuController : Controller
     {
-        // GET: Marka
+        // GET: Menu
         KantinContext ctx = new KantinContext();
-        public ActionResult MarkaTanimKarti()
-        {    
-            OnViewMarka mov = new OnViewMarka();
-            mov.Markalar = ctx.MARKA.ToList();
+        public ActionResult MenuTanimKarti()
+        {
+            OnViewMenu mov = new OnViewMenu();
+            mov.Menuler = ctx.MENUTANIM.ToList();
             if (Request.IsAjaxRequest())
             {
-                return PartialView("pvMarkaList",mov);
+                return PartialView("pvMenuList", mov);
             }
             else return View(mov);
         }
         [HttpPost]
-        public bool MarkaEkle(MARKA m)
+        public bool MenuEkle(MENUTANIM m)
         {
-            var markaVarmi = ctx.MARKA.FirstOrDefault(x => x.MARKA1 == m.MARKA1 );
             bool basarili = false;
-            if (ModelState.IsValid && markaVarmi == null)
+            if (ModelState.IsValid)
             {
-                m.SILINDI = false;
-                ctx.MARKA.Add(m);
-            }
-            else if (ModelState.IsValid)
-            {
-                markaVarmi.SILINDI = false;
-                ctx.Entry(markaVarmi).State = EntityState.Modified;
+                ctx.MENUTANIM.Add(m);
             }
             int sonuc = ctx.SaveChanges();
-            if (sonuc>0)
+            if (sonuc > 0)
             {
-               basarili=true;
+                basarili = true;
             }
             return basarili;
 
         }
-        public ActionResult MarkaGuncelle(int? id, MARKA m)
+        public ActionResult MenuGuncelle(int? id, MENUTANIM m)
         {
 
-            var marka = ctx.MARKA.Find(id);
+            var menu = ctx.MENUTANIM.Find(id);
 
             if (ModelState.IsValid)
             {
-                ctx.MARKA.Add(m);
+                ctx.MENUTANIM.Add(m);
             }
-            return View(marka);
+            return View(menu);
         }
         [HttpPost]
-        public ActionResult MarkaGuncelle(MARKA m)
+        public ActionResult MenuGuncelle(MENUTANIM m)
         {
             bool basarili = false;
             try
             {
                 if (ModelState.IsValid)
                 {
-                    m.SILINDI = false;
                     ctx.Entry(m).State = EntityState.Modified;
-                   int sonuc= ctx.SaveChanges();
+                    int sonuc = ctx.SaveChanges();
                     if (sonuc > 0)
                     {
                         basarili = true;
                     }
-                 
+
                 }
             }
             catch (DbEntityValidationException ex)
@@ -81,19 +73,16 @@ namespace KantinMvc.Controllers
 
                 Response.Write(ex);
             }
-           
-            return RedirectToAction("/MarkaTanimKarti"); 
+            return RedirectToAction("/MenuTanimKarti");
         }
-        public ActionResult MarkaSil(int? id)
+        public ActionResult MenuSil(int? id)
         {
 
-            var marka = ctx.MARKA.Find(id);
-            marka.SILINDI = true;
-           // ctx.MARKA.Remove(marka);
-            ctx.Entry(marka).State = EntityState.Modified;
+            var menu = ctx.MENUTANIM.Find(id);
+            ctx.MENUTANIM.Remove(menu);
             ctx.SaveChanges();
-            
-            return RedirectToAction("MarkaTanimKarti");
+
+            return RedirectToAction("MenuTanimKarti");
         }
 
         protected override void Dispose(bool disposing)
@@ -106,4 +95,4 @@ namespace KantinMvc.Controllers
         }
     }
 }
-    
+

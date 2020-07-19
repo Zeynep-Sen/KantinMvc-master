@@ -1,0 +1,92 @@
+﻿@model KantinMvc.Models.OnViewModel.OnViewSinif
+
+@{
+    ViewBag.Title = "SinifTanimKarti";
+}
+
+
+<div>
+    <h2 class="display-4" style="color:lightseagreen">Sınıf İşlemleri</h2>
+</div>
+<br />
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SinifEkle">
+    Yeni Sınıf Ekle
+</button>
+<br />
+<br />
+
+<!-- Modal -->
+<div class="modal fade" id="SinifEkle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color:lightseagreen">Sınıf Ekle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    @Html.LabelFor(s => s.sinif.Sinif1)
+                    @Html.TextBoxFor(s => s.sinif.Sinif1, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(s => s.sinif.Sinif1)
+                    <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    <input type="submit" name="btnKaydet" value="Kaydet" class="btn btn-primary" onclick="sinifEkle()" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="dvSinifList">
+    @Html.Partial("pvSinifList")
+</div>
+@section scripts{
+    <script>function BoslukKontrol() {
+            var hatayok = true;
+            if ($("#sinif_Sinif1").val() == "") {
+                $("#lblAdHata").show();
+                hatayok = false;
+            }
+            return hatayok;
+        }
+        function sinifEkle() {
+            //if (BoslukKontrol) {
+            $.ajax({
+                url: "/Sinif/SinifEkle",
+                method: "Post",
+                data: {
+                   Sinif1: $("#sinif_Sinif1").val()
+                },
+                success: function (data) {
+                    if (data == 'True') {
+                        alert("Sınıf Ekleme İşlemi Başarılı")
+                        $("#lblAdHata").hide();
+                        $.ajax({
+                            url: "/Sinif/SinifTanimKarti",
+                            method: "Get",
+                            success: function (data) {
+                                $("#dvSinifList").html(data);
+                            }
+                        });
+                    }
+                    else {
+                        alert("Sinif Ekleme İşlemi Başarısız")
+                        $("#lblAdHata").show();
+                    }
+                }
+
+            });
+            //}
+
+
+        }</script>
+}

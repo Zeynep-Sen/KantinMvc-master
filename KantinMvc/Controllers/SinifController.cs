@@ -10,29 +10,36 @@ using System.Web.Mvc;
 
 namespace KantinMvc.Controllers
 {
-    public class MenuController : Controller
+    public class SinifController : Controller
     {
-        // GET: Menu
+        // GET: Sinif
         KantinContext ctx = new KantinContext();
-        public ActionResult MenuTanimKarti()
+        public ActionResult SinifTanimKarti()
         {
-            OnViewMenu mov = new OnViewMenu();
-            mov.Menuler = ctx.MENUTANIM.ToList();
+            OnViewSinif sov = new OnViewSinif();
+            sov.Siniflar = ctx.SINIF.ToList();
+
+
             if (Request.IsAjaxRequest())
             {
-                return PartialView("pvMenuList", mov);
+                return PartialView("pvSinifList", sov);
             }
-            else return View(mov);
+            else return View(sov);
         }
         [HttpPost]
-        public bool MenuEkle(MENUTANIM m) //TODO:
+        public bool SinifEkle(SINIF s)
         {
-            
-        
+            var sinifVarmi = ctx.SINIF.FirstOrDefault(x => x.Sinif1 == s.Sinif1);
             bool basarili = false;
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && sinifVarmi == null)
             {
-                ctx.MENUTANIM.Add(m);
+                s.SILINDI = false;
+                ctx.SINIF.Add(s);
+            }
+            else if (ModelState.IsValid)
+            {
+                sinifVarmi.SILINDI = false;
+                ctx.Entry(sinifVarmi).State = EntityState.Modified;
             }
             int sonuc = ctx.SaveChanges();
             if (sonuc > 0)
@@ -42,26 +49,27 @@ namespace KantinMvc.Controllers
             return basarili;
 
         }
-        public ActionResult MenuGuncelle(int? id, MENUTANIM m)
+        public ActionResult SinifGuncelle(int? id, SINIF s)
         {
 
-            var menu = ctx.MENUTANIM.Find(id);
+            var sinif = ctx.SINIF.Find(id);
 
             if (ModelState.IsValid)
             {
-                ctx.MENUTANIM.Add(m);
+                ctx.SINIF.Add(s);
             }
-            return View(menu);
+            return View(sinif);
         }
         [HttpPost]
-        public ActionResult MenuGuncelle(MENUTANIM m)
+        public ActionResult SinifGuncelle(SINIF s)
         {
             bool basarili = false;
             try
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.Entry(m).State = EntityState.Modified;
+                    s.SILINDI = false;
+                    ctx.Entry(s).State = EntityState.Modified;
                     int sonuc = ctx.SaveChanges();
                     if (sonuc > 0)
                     {
@@ -75,16 +83,17 @@ namespace KantinMvc.Controllers
 
                 Response.Write(ex);
             }
-            return RedirectToAction("/MenuTanimKarti");
+            return RedirectToAction("/SinifTanimKarti");
         }
-        public ActionResult MenuSil(int? id)
+        public ActionResult SinifSil(int? id)
         {
 
-            var menu = ctx.MENUTANIM.Find(id);
-            ctx.MENUTANIM.Remove(menu);
+            var sinif = ctx.SINIF.Find(id);
+            sinif.SILINDI = true;
+            ctx.Entry(sinif).State = EntityState.Modified;
             ctx.SaveChanges();
 
-            return RedirectToAction("MenuTanimKarti");
+            return RedirectToAction("SinifTanimKarti");
         }
 
         protected override void Dispose(bool disposing)

@@ -1,0 +1,50 @@
+﻿@model KantinMvc.Models.URUNGRUBU
+
+@{
+    ViewBag.Title = "UrunGrupGuncelle";
+}
+    <div>
+        <h2 class="display-4" style="color:lightseagreen">Ürün Grup Güncelle</h2>
+    </div>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render()
+
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("UrunGrupGuncelle", "Urun", FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.ID)
+            @Html.LabelFor(m => m.URUNGRUB)
+            @Html.TextBoxFor(m => m.URUNGRUB, new { @class = "form-control" })
+
+            <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+            <br />
+            <div>
+                <input type="submit" name="button" value="Güncelle" class="btn btn-primary" return onclick="BoslukKontrol()" />
+            </div>
+        }
+    </div>
+    <script>
+                function BoslukKontrol() {
+                    var hatayok = true;
+                    if ($("#URUNGRUB").val() == "") {
+                        $("#lblAdHata").show();
+                        hatayok = false;
+                    }
+                    return hatayok;
+                }
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿@model KantinMvc.Models.OnViewModel.OnViewSinif
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Sınıf Adı</th>
+              
+                <th>İşlemler</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.Siniflar)
+            {
+    <tr>
+        @if (item.SILINDI == false)
+        {
+               <td>@item.Sinif1</td>
+                       
+            <td>
+              <a href="/Sinif/SinifGuncelle/@item.ID" class="btn btn-sm btn-primary">Guncelle</a>
+              <a href="/Sinif/SinifSil/@item.ID" class="btn btn-danger" onclick="return confirm('Bu Sınıfı silmek istediğinize emin misiniz?')">Sil</a>
+           </td>}
+    </tr>}
+
+
+        </tbody>
+
+    </table>

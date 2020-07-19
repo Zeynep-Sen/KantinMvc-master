@@ -1,0 +1,32 @@
+﻿@model KantinMvc.Models.OnViewModel.OnViewUrunGrubu
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ürün Grubu</th>
+
+            <th>İşlemler</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.UrunGruplar)
+        {
+            <tr>
+                @if (item.SILINDI == false)
+                {
+                    <td>@item.URUNGRUB</td>
+
+                    <td>
+                        <a href="/Urun/UrunGrupGuncelle/@item.ID" class="btn btn-sm btn-primary">Guncelle</a>
+                        <a href="/Urun/UrunGrupSil/@item.ID" class="btn btn-danger" onclick="return confirm('Bu Sınıfı silmek istediğinize emin misiniz?')">Sil</a>
+                    </td>
+}
+            </tr>
+}
+
+
+    </tbody>
+
+</table>

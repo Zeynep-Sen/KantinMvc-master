@@ -1,0 +1,48 @@
+﻿@model KantinMvc.Models.SINIF
+
+@{
+    ViewBag.Title = "SinifGuncelle";
+}
+
+<h2>SinifGuncelle</h2>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render()
+
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("SinifGuncelle", "Sinif", FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.ID)
+            @Html.LabelFor(m => m.Sinif1)
+            @Html.TextBoxFor(m => m.Sinif1, new { @class = "form-control" })
+
+            <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+            <div>
+                <input type="submit" name="button" value="Güncelle" class="btn btn-primary" return onclick="BoslukKontrol()" />
+            </div>
+        }
+    </div>
+    <script>
+                function BoslukKontrol() {
+                    var hatayok = true;
+                    if ($("#Sinif1").val() == "") {
+                        $("#lblAdHata").show();
+                        hatayok = false;
+                    }
+                    return hatayok;
+                }
+
+
+    </script>
+
+</body>
+</html>

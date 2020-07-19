@@ -145,7 +145,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarkaController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\SinifController.cs" />
     <Compile Include="Controllers\SubeController.cs" />
+    <Compile Include="Controllers\UrunController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,7 +213,9 @@
     </Compile>
     <Compile Include="Models\OnViewModel\OnViewMarka.cs" />
     <Compile Include="Models\OnViewModel\OnViewMenu.cs" />
+    <Compile Include="Models\OnViewModel\OnViewSinif.cs" />
     <Compile Include="Models\OnViewModel\OnViewSube.cs" />
+    <Compile Include="Models\OnViewModel\OnViewUrunGrubu.cs" />
     <Compile Include="Models\PARAMETRE.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -415,6 +419,12 @@
     <Content Include="Views\Menu\MenuGuncelle.cshtml" />
     <Content Include="Views\Marka\MarkaGuncelle.cshtml" />
     <Content Include="Views\Sube\SubeGuncelle.cshtml" />
+    <Content Include="Views\Sinif\SinifTanimKarti.cshtml" />
+    <Content Include="Views\Shared\pvSinifList.cshtml" />
+    <Content Include="Views\Sinif\SinifGuncelle.cshtml" />
+    <Content Include="Views\Shared\pvUrunGrupList.cshtml" />
+    <Content Include="Views\Urun\UrunGrupTanimKarti.cshtml" />
+    <Content Include="Views\Urun\UrunGrupGuncelle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

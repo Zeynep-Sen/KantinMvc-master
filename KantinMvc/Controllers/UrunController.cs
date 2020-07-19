@@ -10,29 +10,36 @@ using System.Web.Mvc;
 
 namespace KantinMvc.Controllers
 {
-    public class MenuController : Controller
+    public class UrunController : Controller
     {
-        // GET: Menu
+        // GET: Urun
         KantinContext ctx = new KantinContext();
-        public ActionResult MenuTanimKarti()
+        public ActionResult UrunGrupTanimKarti()
         {
-            OnViewMenu mov = new OnViewMenu();
-            mov.Menuler = ctx.MENUTANIM.ToList();
+            OnViewUrunGrubu urng = new OnViewUrunGrubu();
+            urng.UrunGruplar = ctx.URUNGRUBU.ToList();
+
+
             if (Request.IsAjaxRequest())
             {
-                return PartialView("pvMenuList", mov);
+                return PartialView("pvUrunGrupList", urng);
             }
-            else return View(mov);
+            else return View(urng);
         }
         [HttpPost]
-        public bool MenuEkle(MENUTANIM m) //TODO:
+        public bool UrunGrupEkle(URUNGRUBU s)
         {
-            
-        
+            var urunGrubuVarmi = ctx.URUNGRUBU.FirstOrDefault(x => x.URUNGRUB == s.URUNGRUB);
             bool basarili = false;
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && urunGrubuVarmi == null)
             {
-                ctx.MENUTANIM.Add(m);
+                s.SILINDI = false;
+                ctx.URUNGRUBU.Add(s);
+            }
+            else if (ModelState.IsValid)
+            {
+                urunGrubuVarmi.SILINDI = false;
+                ctx.Entry(urunGrubuVarmi).State = EntityState.Modified;
             }
             int sonuc = ctx.SaveChanges();
             if (sonuc > 0)
@@ -42,26 +49,27 @@ namespace KantinMvc.Controllers
             return basarili;
 
         }
-        public ActionResult MenuGuncelle(int? id, MENUTANIM m)
+        public ActionResult UrunGrupGuncelle(int? id, URUNGRUBU u)
         {
 
-            var menu = ctx.MENUTANIM.Find(id);
+            var urunGrub = ctx.URUNGRUBU.Find(id);
 
             if (ModelState.IsValid)
             {
-                ctx.MENUTANIM.Add(m);
+                ctx.URUNGRUBU.Add(u);
             }
-            return View(menu);
+            return View(urunGrub);
         }
         [HttpPost]
-        public ActionResult MenuGuncelle(MENUTANIM m)
+        public ActionResult UrunGrupGuncelle(URUNGRUBU u)
         {
             bool basarili = false;
             try
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.Entry(m).State = EntityState.Modified;
+                    u.SILINDI = false;
+                    ctx.Entry(u).State = EntityState.Modified;
                     int sonuc = ctx.SaveChanges();
                     if (sonuc > 0)
                     {
@@ -75,16 +83,17 @@ namespace KantinMvc.Controllers
 
                 Response.Write(ex);
             }
-            return RedirectToAction("/MenuTanimKarti");
+            return RedirectToAction("/UrunGrupTanimKarti");
         }
-        public ActionResult MenuSil(int? id)
+        public ActionResult UrunGrupSil(int? id)
         {
 
-            var menu = ctx.MENUTANIM.Find(id);
-            ctx.MENUTANIM.Remove(menu);
+            var urunGrup = ctx.URUNGRUBU.Find(id);
+            urunGrup.SILINDI = true;
+            ctx.Entry(urunGrup).State = EntityState.Modified;
             ctx.SaveChanges();
 
-            return RedirectToAction("MenuTanimKarti");
+            return RedirectToAction("UrunGrupTanimKarti");
         }
 
         protected override void Dispose(bool disposing)

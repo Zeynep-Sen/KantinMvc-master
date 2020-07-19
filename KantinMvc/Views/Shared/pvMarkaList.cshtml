@@ -12,18 +12,16 @@
     <tbody>
         @foreach (var item in Model.Markalar)
         {
-        <tr>
-            @if (item.SILINDI == false)
-            {
-                <td>@item.MARKA1</td>
-            <td>
-    <a href="/Marka/MarkaGuncelle/@item.ID" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">Guncelle</a>
-    <a href="/Marka/MarkaSil/@item.ID" class="btn btn-danger" onclick="return confirm('Bu Markayı silmek istediğinize emin misiniz?')">Sil</a>
+<tr>
+    @if (item.SILINDI == false)
+    {
+<td>@item.MARKA1</td>
+                    <td>
+                        <a href="/Marka/MarkaGuncelle/@item.ID" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">Guncelle</a>
+                        <a href="/Marka/MarkaSil/@item.ID" class="btn btn-danger" onclick="return confirm('Bu Markayı silmek istediğinize emin misiniz?')">Sil</a>
 
-            </td>
-            }   
-                </tr>
-        }
+                    </td>}
+</tr>}
 
 
     </tbody>
@@ -39,7 +37,7 @@
                 </button>
             </div>
             <div class="modal-body">
-            
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

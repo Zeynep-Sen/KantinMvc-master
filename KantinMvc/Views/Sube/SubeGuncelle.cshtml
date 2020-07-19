@@ -53,7 +53,7 @@
             //}
 
             function subeGuncelle() {
-                console.log("asd")
+               
                 $.ajax({
                     url: "/Sube/SubeGuncelle",
                     method: "Post",
@@ -72,6 +72,7 @@
                                 method: "Get",
                                 success: function (data) {
                                     $("#dvSubeList").html(data);
+                                    console.log("asd")
                                 }
                             });
                         }

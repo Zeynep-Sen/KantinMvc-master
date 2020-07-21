@@ -1,0 +1,114 @@
+﻿@model KantinMvc.Models.PARAMETRE
+
+@{
+    ViewBag.Title = "ParemetreEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h2 class="display-4" style="color:lightseagreen">Parametreler</h2>
+</div>
+<br />
+<form>
+    <div class="form-row">
+        <div class="col">
+
+            @Html.LabelFor(s => s.ADI1)
+            @Html.TextBoxFor(s => s.ADI1, new { @class = "form-control"})
+            @Html.ValidationMessageFor(s => s.ADI1)
+            <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+            @Html.LabelFor(s => s.ADI2)<sup style="color:red">*isteğe bağlı</sup>
+            @Html.TextBoxFor(s => s.ADI2, new { @class = "form-control" })
+            @Html.ValidationMessageFor(s => s.ADI2)
+            <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+            <br />
+            @Html.LabelFor(p => p.PI)  <input type="checkbox" id="PI" name="PI"><br />
+            @Html.LabelFor(p => p.KART)  <input type="checkbox" id="KART" name="KART"><br />
+            @Html.LabelFor(p => p.NOGIRISIZNI)  <input type="checkbox" id="NOGIRISIZNI" name="NOGIRISIZNI"><br />
+            @Html.LabelFor(p => p.BAKIYE_SMS)  <input type="checkbox" id="BAKIYE_SMS" name="BAKIYE_SMS"><br />
+
+            @Html.LabelFor(s => s.PARABIRIMI)
+            <select class="form-control" id="PARABIRIMI" name="PARABIRIMI">
+                <option>TL</option>
+                <option>$</option>
+                <option>£</option>
+            </select>
+            <span class="field-validation-valid" data-valmsg-for="PARABIRIMI" data-valmsg-replace="true"></span>
+          
+
+
+        </div>
+        <div class="col">
+            @Html.LabelFor(s => s.ADI3)<sup style="color:red">*isteğe bağlı</sup>
+            @Html.TextBoxFor(s => s.ADI3, new { @class = "form-control" })
+            @Html.ValidationMessageFor(s => s.ADI3)
+            <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+            @Html.LabelFor(s => s.ADI4)<sup style="color:red">*isteğe bağlı</sup>
+            @Html.TextBoxFor(s => s.ADI4, new { @class = "form-control" })
+            @Html.ValidationMessageFor(s => s.ADI4)
+            <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label><br />
+            @Html.LabelFor(p => p.EKSIBAKIYESATIS)  <input type="checkbox" id="EKSIBAKIYESATIS" name="EKSIBAKIYESATIS"><br />
+            @Html.LabelFor(p => p.FISYUKLEME)  <input type="checkbox" id="FISYUKLEME" name="FISYUKLEME"><br />
+            @Html.LabelFor(p => p.FISHARCAMA)  <input type="checkbox" id="NOGIRISIZNI" name="FISHARCAMA"><br />
+            @Html.LabelFor(p => p.YUKLEMESIL)  <input type="checkbox" id="NOGIRISIZNI" name="YUKLEMESIL"><br />
+            <input type="submit" name="btnKaydet" value="Kaydet" class="btn btn-primary" onclick="parametreEkle()" />
+
+        </div>
+    </div>
+</form>
+@section scripts{
+    <script>
+//function BoslukKontrol() {
+//            var hatayok = true;
+//            if ($("#sinif_Sinif1").val() == "") {
+//                $("#lblAdHata").show();
+//                hatayok = false;
+//            }
+//            return hatayok;
+        //}
+        function parametreEkle() {
+            console.log($("#FISYUKLEME").val())
+            //if (BoslukKontrol) {
+            $.ajax({
+                url: "/Parametre/ParametreEkle",
+                method: "Post",
+                data: {
+                    ADI1: $("#ADI1").val(),
+                    ADI2: $("#ADI2").val(),
+                    ADI3: $("#ADI3").val(),
+                    ADI4: $("#ADI4").val(),
+                    KART: $("KART").val(),
+                    PI: $("#PI").val(),
+                    NOGIRISIZNI: $("#NOGIRISIZNI").val(),
+                    BAKIYE_SMS: $("#BAKIYE_SMS").val(),
+                    EKSIBAKIYESATIS: $("#EKSIBAKIYESATIS").val(),
+                    FISYUKLEME: $("#FISYUKLEME").val(),
+                    FISHARCAMA: $("#FISHARCAMA").val(),
+                    PARABIRIMI: $("#PARABIRIMI").val(),
+                    YUKLEMESIL: $("#YUKLEMESIL").val()
+                },
+                success: function (data) {
+                    if (data == 'True') {
+                        alert("Parametreler Kaydedildi")
+                        $("#lblAdHata").hide();
+                        $.ajax({
+                            url: "/Parametre/ParametreEkle",
+                            method: "Get",
+                            success: function (data) {
+                                //$("#dvSinifList").html(data);
+                            }
+                        });
+                    }
+                    else {
+                        alert("Parametre Kayıt İşlemi Başarısız")
+                        $("#lblAdHata").show();
+                    }
+                }
+
+            });
+            //}
+
+
+        }</script>
+}
+

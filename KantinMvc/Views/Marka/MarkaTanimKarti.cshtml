@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <form class="was-validated">
                         @Html.LabelFor(m => m.marka.MARKA1)
-                        @Html.TextBoxFor(m => m.marka.MARKA1, new { @class = "form-control is-invalid" })
+                        @Html.TextBoxFor(m => m.marka.MARKA1, new { @class = "form-control is-invalid", required = "required" })
                         @Html.ValidationMessageFor(m => m.marka.MARKA1)
                         <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
                        

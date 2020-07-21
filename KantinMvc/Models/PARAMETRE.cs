@@ -11,28 +11,45 @@ namespace KantinMvc.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PARAMETRE
     {
         public int ID { get; set; }
         public string IP1 { get; set; }
+        [Display(Name ="Lokasyon Adý")]
         public string ADI1 { get; set; }
         public string IP2 { get; set; }
+        [Display(Name = "Lokasyon Adý")]
         public string ADI2 { get; set; }
         public string IP3 { get; set; }
+        [Display(Name = "Lokasyon Adý")]
         public string ADI3 { get; set; }
         public string IP4 { get; set; }
+        [Display(Name = "Lokasyon Adý")]
         public string ADI4 { get; set; }
+        [Display(Name = "Kartlý Geçiþ Sistemi")]
         public Nullable<bool> KART { get; set; }
+        [Display(Name = "Parmak Ýzi Tanýma Sistemi")]
         public Nullable<bool> PI { get; set; }
+        [Display(Name = "No Giriþ Sistemi")]
         public Nullable<bool> NOGIRISIZNI { get; set; }
+        [Display(Name = "Kalan Bakiyeyi Sms Gönder")]
         public Nullable<bool> BAKIYE_SMS { get; set; }
+        [Display(Name = "Eksi Bakiye Satýþýna Ýzin Ver")]
         public Nullable<bool> EKSIBAKIYESATIS { get; set; }
+        [Display(Name = "Para Yüklemede Fiþ Çýktýsý Versin")]
         public Nullable<bool> FISYUKLEME { get; set; }
+        [Display(Name = "Harcama Fiþ Çýktýsý Versin")]
         public Nullable<bool> FISHARCAMA { get; set; }
+        [Display(Name = "Eksi Yükleme Silmeye Ýzin Ver")]
         public Nullable<bool> YUKLEMEBONUS { get; set; }
+       
         public Nullable<bool> HARCAMABONUS { get; set; }
+        [Display(Name = "Para Birimi")]
+
         public string PARABIRIMI { get; set; }
+        [Display(Name = "Eksi Yükleme Silmeye Ýzin Ver")]
         public Nullable<bool> YUKLEMESIL { get; set; }
     }
 }

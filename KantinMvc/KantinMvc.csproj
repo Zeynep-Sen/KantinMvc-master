@@ -147,6 +147,7 @@
     <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\MarkaController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ParametreController.cs" />
     <Compile Include="Controllers\SinifController.cs" />
     <Compile Include="Controllers\SubeController.cs" />
     <Compile Include="Controllers\UrunController.cs" />
@@ -259,6 +260,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\benimCss.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -285,6 +287,7 @@
     <Content Include="Models\Models.edmx.diagram">
       <DependentUpon>Models.edmx</DependentUpon>
     </Content>
+    <Content Include="Scripts\benimJs.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -435,6 +438,7 @@
     <Content Include="Views\Kullanici\KullaniciTanimKarti.cshtml" />
     <Content Include="Views\Shared\pvKullaniciList.cshtml" />
     <Content Include="Views\Kullanici\KullaniciGuncelle.cshtml" />
+    <Content Include="Views\Parametre\ParemetreEkle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

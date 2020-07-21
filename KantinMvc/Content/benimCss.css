@@ -1,0 +1,114 @@
+﻿/* globale */
+* {
+    margin: 0;
+    padding: 0;
+    -webkite-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ul.links {
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #7D1424;
+}
+
+    ul.links li {
+        float: left;
+    }
+
+        ul.links li a {
+            display: inline-block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 20px 16px;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 17px;
+            transiton: all .5s ease-in-out
+        }
+
+            ul.links li a:hover {
+                background-color: #F64747;
+            }
+
+        ul.links li.icon {
+            display: none;
+        }
+
+.links .menu {
+    position: relative;
+}
+
+    .links .menu .submenu {
+        position: absolute;
+        top: 42px;
+        left: 0;
+        width: 220px;
+        background: #fff;
+        padding: 10px;
+        -webkite-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+        display: none;
+    }
+
+        .links .menu .submenu li {
+            padding: 10px;
+        }
+
+            .links .menu .submenu li a {
+                color: #777;
+                text-decoration: none
+            }
+
+        .links .menu .submenu:before {
+            content: '';
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 6px solid #fff;
+            height: 0;
+            width: 0;
+            position: absolute;
+            top: -6px;
+            left: 30px;
+        }
+
+    .links .menu:hover .submenu {
+        display: block;
+    }
+
+/* media Queries */
+@media screen and (max-width:680px) {
+    ul.links li:not(:first-child) {
+        display: none;
+    }
+
+    ul.links li.icon {
+        float: right;
+        display: inline-block;
+    }
+}
+/* new class responsive */
+@media screen and (max-width:680px) {
+    ul.links.responsive {
+        position: relative;
+    }
+
+        ul.links.responsive li.icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        ul.links.responsive li {
+            float: none;
+            display: inline;
+        }
+
+            ul.links.responsive li a {
+                display: block;
+                text-align: left;
+            }
+}

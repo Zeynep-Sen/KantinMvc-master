@@ -4,7 +4,11 @@
     ViewBag.Title = "SinifGuncelle";
 }
 
-<h2>SinifGuncelle</h2>
+<br />
+<div>
+    <h2 class="display-4" style="color:lightseagreen">Sınıf Güncelle</h2>
+</div>
+<br />
 
 <!DOCTYPE html>
 
@@ -25,21 +29,21 @@
             @Html.LabelFor(m => m.Sinif1)
             @Html.TextBoxFor(m => m.Sinif1, new { @class = "form-control" })
 
-            <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+            <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label><br />
             <div>
                 <input type="submit" name="button" value="Güncelle" class="btn btn-primary" return onclick="BoslukKontrol()" />
             </div>
         }
     </div>
     <script>
-                function BoslukKontrol() {
-                    var hatayok = true;
-                    if ($("#Sinif1").val() == "") {
-                        $("#lblAdHata").show();
-                        hatayok = false;
-                    }
-                    return hatayok;
-                }
+        function BoslukKontrol() {
+            var hatayok = true;
+            if ($("#Sinif1").val() == "") {
+                $("#lblAdHata").show();
+                hatayok = false;
+            }
+            return hatayok;
+        }
 
 
     </script>

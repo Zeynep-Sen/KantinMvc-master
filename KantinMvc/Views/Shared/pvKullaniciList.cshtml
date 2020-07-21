@@ -1,0 +1,37 @@
+﻿@model KantinMvc.Models.OnViewModel.OnViewKullanici
+
+<table class="table table-striped">
+      <thead>
+        <tr>
+            <th>Kullanıcı Adı</th>
+            <th>Şifre</th>
+            <th>Şube</th>
+            <th>Kullanıcı Tipi</th>
+            <th>İşlemler</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Kullanicilar.ToList().Count>0)
+        {
+            foreach (var item in Model.Kullanicilar)
+            {
+        <tr>
+            <td>@item.KULLANICIADI</td>
+            <td>@item.SIFRE</td>
+            <td>@item.SUBE_ID</td>
+            <td>@item.KULLANICITIPI_ID</td>
+
+            <td>
+                <a href="/Kullanici/KullaniciGuncelle/@item.ID" class="btn btn-sm btn-primary">Guncelle</a>
+                <a href="/Kullanici/KullaniciSil/@item.ID" class="btn btn-danger" onclick="return confirm('Bu kullanıcıyı silmek istediğinize emin misiniz?')">Sil</a>
+            </td>
+        </tr>
+            }
+
+        }
+
+
+    </tbody>
+</table>

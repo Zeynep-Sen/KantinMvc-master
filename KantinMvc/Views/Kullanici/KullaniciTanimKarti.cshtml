@@ -1,0 +1,135 @@
+﻿@model KantinMvc.Models.OnViewModel.OnViewKullanici
+
+@{
+    ViewBag.Title = "KullaniciTanimKarti";
+}
+
+<div>
+    <h2 class="display-4" style="color:lightseagreen">Kullanici İşlemleri</h2>
+</div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#KullaniciEkle">
+    Yeni Kullanıcı Ekle
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="KullaniciEkle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color:lightseagreen">Kullanici Ekle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col">
+                            @Html.LabelFor(s => s.klc.KULLANICIADI)
+                            @Html.TextBoxFor(s => s.klc.KULLANICIADI, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(s => s.klc.KULLANICIADI)
+                            <label  class="hata" style="display:none;color:red">Kullanıcı Adı alanı boş olamaz</label>
+                        </div>
+                        <div class="col">
+                            @Html.LabelFor(s => s.klc.SIFRE)
+                            @Html.TextBoxFor(s => s.klc.SIFRE, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(s => s.klc.SIFRE)
+                            <label  class="hata" style="display:none;color:red">Şifre alanı boş olamaz</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            @Html.LabelFor(s => s.klc.SUBE_ID)
+                            <select class="form-control" id="klc_SUBE_ID" name="klc_SUBE_ID">
+                                @foreach (var item in Model.Subeler)
+                                {
+                                    if (item.SILINDI != true)
+                                    {
+                                        <option value="@item.ID">@item.ADI</option>
+                                    }
+
+
+                                }
+
+                            </select>
+                            <span class="field-validation-valid" data-valmsg-for="klc_SUBE_ID" data-valmsg-replace="true"></span>
+                            @Html.ValidationMessageFor(s => s.klc.SUBE_ID)
+                        <label class="hata" style="display:none;color:red">Lütfen Şube seçiniz</label>
+                        </div>
+                        <div class="col">
+                            @Html.LabelFor(s => s.klc.KULLANICITIPI_ID)
+                            <select class="form-control" id="klc_KULLANICITIPI_ID" name="klc_KULLANICITIPI_ID">
+                                @foreach (var item in Model.KullaniciTip)
+                                {
+                                    <option value="@item.ID">@item.ADI</option>
+
+                                }
+
+                            </select>
+                            <span class="field-validation-valid" data-valmsg-for="klc_KULLANICITIPI_ID" data-valmsg-replace="true"></span>
+                            @Html.ValidationMessageFor(o => o.klc.KULLANICITIPI_ID)
+                            <label class="hata" style="display:none;color:red">Lütfen Kullanıcı seçiniz</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    <input type="submit" name="btnKaydet" value="Kaydet" class="btn btn-primary" onclick="klcEkle()" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="dvKullaniciList">
+    @Html.Partial("pvKullaniciList")
+</div>
+@section scripts{
+    <script>
+        //function BoslukKontrol() {
+        //    var hatayok = true;
+        //    if ($("#sube_ADI").val() == "") {
+        //        $("#lblAdHata").show();
+        //        hatayok = false;
+        //    }
+        //    return hatayok;
+        //}
+        function klcEkle() {
+            //if (BoslukKontrol) {
+            $.ajax({
+                url: "/Kullanici/KullaniciEkle",
+                method: "Post",
+                data: {
+                    KULLANICIADI: $("#klc_KULLANICIADI").val(),
+                    SUBE_ID: $("#klc_SUBE_ID").val(),
+                    SIFRE: $("#klc_SIFRE").val(),
+                    KULLANICITIPI_ID: $("#klc_KULLANICITIPI_ID").val()
+                },
+                success: function (data) {
+                    if (data == 'True') {
+                        alert("Kullanıcı Ekleme İşlemi Başarılı")
+                        $(".hata").hide();
+                        $.ajax({
+                            url: "/Kullanici/KullaniciTanimKarti",
+                            method: "Get",
+                            success: function (data) {
+                                $("#dvKullaniciList").html(data);
+                             
+                            }
+                        });
+                    }
+                    else {
+                        alert("Kullanıcı Ekleme İşlemi Başarısız")
+                        $(".hata").show();
+                    }
+                }
+
+            });
+            //}
+
+
+        }
+
+    </script>
+}

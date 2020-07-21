@@ -11,10 +11,13 @@ namespace KantinMvc.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SINIF
     {
         public int ID { get; set; }
+        [Required]
+        [Display (Name ="Sýnýf Adý")]
         public string Sinif1 { get; set; }
         public Nullable<bool> SILINDI { get; set; }
     }

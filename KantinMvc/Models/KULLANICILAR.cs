@@ -21,5 +21,7 @@ namespace KantinMvc.Models
         public string SIFRE { get; set; }
         public Nullable<bool> AKTIF { get; set; }
         public Nullable<bool> SILINDI { get; set; }
+        public SUBE subesi { get; set; }
+        public KULLANICITIPI klcTip { get; set; }
     }
 }

@@ -4,6 +4,12 @@
 @{
     ViewBag.Title = "MarkaGuncelle";
 }
+<br />
+<div>
+    <h2 class="display-4" style="color:lightseagreen">Marka Güncelle</h2>
+</div>
+<br />
+
 <!DOCTYPE html>
 
 <html>
@@ -17,32 +23,34 @@
 </head>
 <body>
     <div>
-    @using (Html.BeginForm("MarkaGuncelle", "Marka", FormMethod.Post))
-    {
+        @using (Html.BeginForm("MarkaGuncelle", "Marka", FormMethod.Post))
+        {
             @Html.HiddenFor(m => m.ID)
             @Html.LabelFor(m => m.MARKA1)
             @Html.TextBoxFor(m => m.MARKA1, new { @class = "form-control" })
 
             <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+            <br />
+
             <div>
                 <input type="submit" name="button" value="Güncelle" class="btn btn-primary" return onclick="BoslukKontrol()" />
             </div>
-    }
-        </div>
-        <script>
-                function BoslukKontrol() {
-                    var hatayok = true;
-                    if ($("#MARKA1").val() == "") {
-                        $("#lblAdHata").show();
-                        hatayok = false;
-                    }
-                    return hatayok;
-                }
+        }
+    </div>
+    <script>
+        function BoslukKontrol() {
+            var hatayok = true;
+            if ($("#MARKA1").val() == "") {
+                $("#lblAdHata").show();
+                hatayok = false;
+            }
+            return hatayok;
+        }
 
 
-        </script>
+    </script>
 
-   
+
 
 
 

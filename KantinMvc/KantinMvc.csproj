@@ -144,6 +144,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CariController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\MarkaController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\SinifController.cs" />
@@ -213,6 +214,7 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OnViewModel\OnViewCari.cs" />
+    <Compile Include="Models\OnViewModel\OnViewKullanici.cs" />
     <Compile Include="Models\OnViewModel\OnViewMarka.cs" />
     <Compile Include="Models\OnViewModel\OnViewMenu.cs" />
     <Compile Include="Models\OnViewModel\OnViewSinif.cs" />
@@ -430,6 +432,8 @@
     <Content Include="Views\Cari\CariTanimKarti.cshtml" />
     <Content Include="Views\Shared\pvCariList.cshtml" />
     <Content Include="Views\Cari\CariGuncelle.cshtml" />
+    <Content Include="Views\Kullanici\KullaniciTanimKarti.cshtml" />
+    <Content Include="Views\Shared\pvKullaniciList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

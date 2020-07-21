@@ -11,10 +11,13 @@ namespace KantinMvc.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class MENUTANIM
     {
         public int ID { get; set; }
+        [Required]
+        [Display(Name = "Menü Adý")]
         public string ADI { get; set; }
     }
 }

@@ -11,19 +11,31 @@ namespace KantinMvc.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CARIKART
     {
         public int ID { get; set; }
+        [Display(Name = "Cari Kod")]
         public string CARIKOD { get; set; }
+        [Required]
+        [Display(Name = "Ünvan")]
         public string UNVAN { get; set; }
+        [Display(Name = "Yetkili Ad Soyad")]
         public string ADISOYADI { get; set; }
+        [Display(Name = "Adres")]
         public string ADRES { get; set; }
+        [Display(Name = "Telefon")]
         public string TELEFON { get; set; }
+        [Display(Name = "Faks")]
         public string FAKS { get; set; }
+        [Display(Name = "Ýlçe")]
         public string ILCE { get; set; }
+        [Display(Name = "Ýl")]
         public string IL { get; set; }
+        [Display(Name = "Vergi Adresi")]
         public string VERGIDAIRESI { get; set; }
+        [Display(Name = "Vergi No")]
         public string VERGINO { get; set; }
         public Nullable<System.DateTime> ISLEMTARIHI { get; set; }
         public Nullable<bool> SILINDI { get; set; }

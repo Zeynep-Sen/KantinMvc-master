@@ -62,7 +62,7 @@ namespace KantinMvc.Controllers
         [HttpPost]
         public ActionResult CariGuncelle(CARIKART c)
         {
-            bool basarili = false;
+           // bool basarili = false;
             try
             {
                 if (ModelState.IsValid)
@@ -72,7 +72,8 @@ namespace KantinMvc.Controllers
                     int sonuc = ctx.SaveChanges();
                     if (sonuc > 0)
                     {
-                        basarili = true;
+                       // basarili = true;
+                        return RedirectToAction("/CariTanimKarti");
                     }
 
                 }
@@ -82,8 +83,8 @@ namespace KantinMvc.Controllers
 
                 Response.Write(ex);
             }
-
-            return RedirectToAction("/CariTanimKarti");
+            return View();
+          
         }
         public ActionResult CariSil(int? id)
         {

@@ -3,8 +3,13 @@
 @{
     ViewBag.Title = "MenuGuncelle";
 }
+   
+<br />
+<div>
+    <h2 class="display-4" style="color:lightseagreen">Menü Güncelle</h2>
+</div>
+<br />
 
-<h2>Menu Guncelle</h2>
 
 <!DOCTYPE html>
 
@@ -20,29 +25,29 @@
 <body>
     <div>
         @using (Html.BeginForm("MenuGuncelle", "Menu", FormMethod.Post))
-        {
+        {   
             @Html.HiddenFor(m => m.ID)
             @Html.LabelFor(m => m.ADI)
-            @Html.TextBoxFor(m => m.ADI, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.ADI, new { @class = "form-control" } )
 
-            <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+            <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label><br />
             <div>
                 <input type="submit" name="button" value="Güncelle" class="btn btn-primary" return onclick="BoslukKontrol()" />
             </div>
         }
     </div>
     <script>
-                function BoslukKontrol() {
-                    var hatayok = true;
-                    if ($("#ADI").val() == "") {
-                        $("#lblAdHata").show();
-                        hatayok = false;
-                    }
-                    return hatayok;
-                }
+        function BoslukKontrol() {
+            var hatayok = true;
+            if ($("#ADI").val() == "") {
+                $("#lblAdHata").show();
+                hatayok = false;
+            }
+            return hatayok;
+        }
 
 
     </script>
 
-    </body>
+</body>
 </html>

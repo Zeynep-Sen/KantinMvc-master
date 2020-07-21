@@ -1,0 +1,108 @@
+﻿@model KantinMvc.Models.KULLANICILAR
+
+@{
+    ViewBag.Title = "KullaniciGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div>
+    <h2 class="display-4" style="color:lightseagreen">Kullanıcı Güncelle</h2>
+</div>
+<br />
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render()
+    <title>MarkaGuncelle</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("KullaniciGuncelle", "Kullanici", FormMethod.Post))
+        {
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                        @Html.LabelFor(s => s.KULLANICIADI)
+                        @Html.TextBoxFor(s => s.KULLANICIADI, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(s => s.KULLANICIADI)
+                        <label class="hata" style="display:none;color:red">Kullanıcı Adı alanı boş olamaz</label>
+                    </div>
+                    <div class="col">
+                        @Html.LabelFor(s => s.SIFRE)
+                        @Html.TextBoxFor(s => s.SIFRE, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(s => s.SIFRE)
+                        <label class="hata" style="display:none;color:red">Şifre alanı boş olamaz</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        @Html.LabelFor(s => s.SUBE_ID)
+                        <select class="form-control" id="SUBE_ID" name="SUBE_ID">
+                            @foreach (var item in ViewBag.Subeler)
+                            {
+                                <option value="@item.ID">@item.ADI</option>
+
+                                if (item.ID == Model.SUBE_ID)
+                                {
+                                    <option value="@item.ID" selected>@item.ADI</option>
+                                    continue;
+                                }
+
+                            }
+
+                        </select>
+                        <span class="field-validation-valid" data-valmsg-for="SUBE_ID" data-valmsg-replace="true"></span>
+                        @Html.ValidationMessageFor(s => s.SUBE_ID)
+                        <label class="hata" style="display:none;color:red">Lütfen Şube seçiniz</label>
+                    </div>
+                    <div class="col">
+                        @Html.LabelFor(s => s.KULLANICITIPI_ID)
+                        <select class="form-control" id="KULLANICITIPI_ID" name="KULLANICITIPI_ID">
+                            @foreach (var item in ViewBag.KullaniciTip)
+                            {
+                                <option value="@item.ID">@item.ADI</option>
+                             
+                                if (item.ID == Model.KULLANICITIPI_ID)
+                                {
+                                    <option value="@item.ID" selected>@item.ADI</option>
+                                    continue;
+
+                                }
+
+                            }
+
+                        </select>
+                        <span class="field-validation-valid" data-valmsg-for="KULLANICITIPI_ID" data-valmsg-replace="true"></span>
+                        @Html.ValidationMessageFor(o => o.KULLANICITIPI_ID)
+                        <label class="hata" style="display:none;color:red">Lütfen Kullanıcı seçiniz</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <input type="submit" name="button" value="Güncelle" class="btn btn-primary" return onclick="BoslukKontrol()" />
+            </div>
+        }
+    </div>
+    <script>
+        function BoslukKontrol() {
+            var hatayok = true;
+            if ($("#SIFRE").val() == "") {
+                $("#lblAdHata").show();
+                hatayok = false;
+            }
+            return hatayok;
+        }
+
+
+    </script>
+
+
+</body>
+</html>

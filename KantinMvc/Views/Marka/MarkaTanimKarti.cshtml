@@ -23,12 +23,18 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.marka.MARKA1)
-                    @Html.TextBoxFor(m => m.marka.MARKA1, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.marka.MARKA1)
-                    <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
-
-
+                    <form class="was-validated">
+                        @Html.LabelFor(m => m.marka.MARKA1)
+                        @Html.TextBoxFor(m => m.marka.MARKA1, new { @class = "form-control is-invalid" })
+                        @Html.ValidationMessageFor(m => m.marka.MARKA1)
+                        <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+                       
+                            <label for="validationTextarea">Textarea</label>
+                            <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+                            <div class="invalid-feedback">
+                                Please enter a message in the textarea.
+                            </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>

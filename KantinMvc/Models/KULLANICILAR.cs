@@ -11,17 +11,23 @@ namespace KantinMvc.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class KULLANICILAR
     {
         public int ID { get; set; }
+        [Display(Name ="Þube")]
         public Nullable<int> SUBE_ID { get; set; }
+        [Display(Name = "Kullanýcý Tipi")]
         public Nullable<int> KULLANICITIPI_ID { get; set; }
+        [Display(Name = "Kullanýcý Adý")]
         public string KULLANICIADI { get; set; }
+        [Display(Name = "Þifre")]
         public string SIFRE { get; set; }
+        [Display(Name = "Aktif")]
         public Nullable<bool> AKTIF { get; set; }
+        [Display(Name = "Silindi")]
         public Nullable<bool> SILINDI { get; set; }
-        public SUBE subesi { get; set; }
-        public KULLANICITIPI klcTip { get; set; }
+
     }
 }

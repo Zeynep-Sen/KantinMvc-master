@@ -35,20 +35,14 @@ namespace KantinMvc.Controllers
             bool basarili = false;
             if (ModelState.IsValid && kullaniciVarmi == null)
             {
-                var sube= ctx.SUBE.Find(klc.SUBE_ID);
-                var klcTip = ctx.KULLANICITIPI.Find(klc.KULLANICITIPI_ID);
-                klc.subesi = sube;
-                klc.klcTip = klcTip;
+               
                 klc.AKTIF = true;
                 klc.SILINDI = false;
                 ctx.KULLANICILAR.Add(klc);
             }
             else if (ModelState.IsValid)
             {
-                var sube = ctx.SUBE.Find(klc.SUBE_ID);
-                var klcTip = ctx.KULLANICITIPI.Find(klc.KULLANICITIPI_ID);
-                klc.subesi = sube;
-                klc.klcTip = klcTip;
+             
                 klc.AKTIF = true;
                 kullaniciVarmi.SIFRE = klc.SIFRE;
                 kullaniciVarmi.SUBE_ID = klc.SUBE_ID;
@@ -65,8 +59,12 @@ namespace KantinMvc.Controllers
         }
         public ActionResult KullaniciGuncelle(int? id, KULLANICILAR klc)
         {
+            var Subeler = ctx.SUBE.ToList();
+            var KullaniciTip = ctx.KULLANICITIPI.ToList();
+            ViewBag.Subeler = Subeler;
+            ViewBag.KullaniciTip = KullaniciTip;
 
-            var kullanici = ctx.KULLANICILAR.Find(id);
+           var kullanici = ctx.KULLANICILAR.Find(id);
 
             if (ModelState.IsValid)
             {

@@ -20,8 +20,25 @@
         <tr>
             <td>@item.KULLANICIADI</td>
             <td>@item.SIFRE</td>
-            <td>@item.SUBE_ID</td>
-            <td>@item.KULLANICITIPI_ID</td>
+            @foreach (var sube in Model.Subeler)
+            {
+                if (item.SUBE_ID == sube.ID)
+                {
+                    <td>@sube.ADI</td>
+                    break;
+                }
+
+            }
+            @foreach (var klc in Model.KullaniciTip)
+            {
+                if (item.KULLANICITIPI_ID == klc.ID)
+                {
+                    <td>@klc.ADI</td>
+                    break;
+                }
+
+            }
+           
 
             <td>
                 <a href="/Kullanici/KullaniciGuncelle/@item.ID" class="btn btn-sm btn-primary">Guncelle</a>

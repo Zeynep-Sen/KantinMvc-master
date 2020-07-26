@@ -29,19 +29,19 @@ namespace KantinMvc.Models
         [Display(Name = "Lokasyon Adý")]
         public string ADI4 { get; set; }
         [Display(Name = "Kartlý Geçiþ Sistemi")]
-        public Nullable<bool> KART { get; set; }
+        public bool KART { get; set; }
         [Display(Name = "Parmak Ýzi Tanýma Sistemi")]
-        public Nullable<bool> PI { get; set; }
+        public bool PI { get; set; }
         [Display(Name = "No Giriþ Sistemi")]
-        public Nullable<bool> NOGIRISIZNI { get; set; }
+        public bool NOGIRISIZNI { get; set; }
         [Display(Name = "Kalan Bakiyeyi Sms Gönder")]
-        public Nullable<bool> BAKIYE_SMS { get; set; }
+        public bool BAKIYE_SMS { get; set; }
         [Display(Name = "Eksi Bakiye Satýþýna Ýzin Ver")]
-        public Nullable<bool> EKSIBAKIYESATIS { get; set; }
+        public bool EKSIBAKIYESATIS { get; set; }
         [Display(Name = "Para Yüklemede Fiþ Çýktýsý Versin")]
-        public Nullable<bool> FISYUKLEME { get; set; }
+        public bool FISYUKLEME { get; set; }
         [Display(Name = "Harcama Fiþ Çýktýsý Versin")]
-        public Nullable<bool> FISHARCAMA { get; set; }
+        public bool FISHARCAMA { get; set; }
         [Display(Name = "Eksi Yükleme Silmeye Ýzin Ver")]
         public Nullable<bool> YUKLEMEBONUS { get; set; }
        
@@ -50,6 +50,6 @@ namespace KantinMvc.Models
 
         public string PARABIRIMI { get; set; }
         [Display(Name = "Eksi Yükleme Silmeye Ýzin Ver")]
-        public Nullable<bool> YUKLEMESIL { get; set; }
+        public bool YUKLEMESIL { get; set; }
     }
 }

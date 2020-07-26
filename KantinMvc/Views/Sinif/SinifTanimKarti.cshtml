@@ -30,11 +30,12 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    @Html.LabelFor(s => s.sinif.Sinif1)
-                    @Html.TextBoxFor(s => s.sinif.Sinif1, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(s => s.sinif.Sinif1)
-                    <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
-
+                    <form class="was-validated">
+                        @Html.LabelFor(s => s.sinif.Sinif1)
+                        @Html.TextBoxFor(s => s.sinif.Sinif1, new { @class = "form-control is-invalid", required = "required" })
+                        @Html.ValidationMessageFor(s => s.sinif.Sinif1)
+                        <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+                    </form>
 
                 </div>
                 <div class="modal-footer">

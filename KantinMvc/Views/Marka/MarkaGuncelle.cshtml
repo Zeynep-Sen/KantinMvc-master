@@ -23,72 +23,75 @@
 </head>
 <body>
     <div>
-        @using (Html.BeginForm("MarkaGuncelle", "Marka", FormMethod.Post))
+        @using (Html.BeginForm("MarkaGuncelle", "Marka", FormMethod.Post,new {@class="was-validated" }))
         {
-            @Html.HiddenFor(m => m.ID)
-            @Html.LabelFor(m => m.MARKA1)
-            @Html.TextBoxFor(m => m.MARKA1, new { @class = "form-control" })
+                @Html.HiddenFor(m => m.ID)
+                @Html.LabelFor(m => m.MARKA1)
+                @Html.TextBoxFor(m => m.MARKA1, new { @class = "form-control is-invalid", required = "required" })
 
-            <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
-            <br />
+                <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+        
+                <br />
 
-            <div>
-                <input type="submit" name="button" value="Güncelle" class="btn btn-primary" return onclick="BoslukKontrol()" />
-            </div>
-        }
-    </div>
-    <script>
-        function BoslukKontrol() {
-            var hatayok = true;
-            if ($("#MARKA1").val() == "") {
-                $("#lblAdHata").show();
-                hatayok = false;
+                <div>
+                    <input type="submit" name="button" value="Güncelle" class="btn btn-primary" return onclick="BoslukKontrol()" />
+                </div>
+                }
+
+        </div>
+      
+        <script>
+            function BoslukKontrol() {
+                var hatayok = true;
+                if ($("#MARKA1").val() == "") {
+                    $("#lblAdHata").show();
+                    hatayok = false;
+                }
+                return hatayok;
             }
-            return hatayok;
-        }
 
 
-    </script>
+        </script>
 
 
 
 
 
 
-    @*<script>
-        function markaGuncelle() {
-                   console.log("asd")
-                   $.ajax({
-                       url: "/Marka/MarkaGuncelle",
-                       method: "Post",
-                       data: {
-                           MARKA1: $("#MARKA1").val(),
-                           ID: $("#ID").val()
-                       },
-                       success: function (data) {
-                           console.log(data)
-                           if (data == 'True') {
-                               alert("Marka Güncelleme İşlemi Başarılı")
-                               $("#lblAdHata").hide();
-                               $.ajax({
-                                   url: "/Marka/MarkaTanimKarti",
-                                   method: "Get",
-                                   success: function (data) {
-                                       $("#dvMarkaList").html(data);
-                                   }
-                               });
+        @*<script>
+            function markaGuncelle() {
+                       console.log("asd")
+                       $.ajax({
+                           url: "/Marka/MarkaGuncelle",
+                           method: "Post",
+                           data: {
+                               MARKA1: $("#MARKA1").val(),
+                               ID: $("#ID").val()
+                           },
+                           success: function (data) {
+                               console.log(data)
+                               if (data == 'True') {
+                                   alert("Marka Güncelleme İşlemi Başarılı")
+                                   $("#lblAdHata").hide();
+                                   $.ajax({
+                                       url: "/Marka/MarkaTanimKarti",
+                                       method: "Get",
+                                       success: function (data) {
+                                           $("#dvMarkaList").html(data);
+                                       }
+                                   });
+                               }
+                               else {
+                                   alert("Marka Güncelleme İşlemi Başarısız")
+                                   $("#lblAdHata").show();
+                               }
                            }
-                           else {
-                               alert("Marka Güncelleme İşlemi Başarısız")
-                               $("#lblAdHata").show();
-                           }
-                       }
 
-                   });
+                       });
 
-               }
-           </script>*@
+                   }
+               </script>*@
 
 
-</body>
+    </body>
 </html>

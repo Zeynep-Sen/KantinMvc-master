@@ -21,8 +21,10 @@ namespace KantinMvc.Models
         [Display(Name = "Kullanýcý Tipi")]
         public Nullable<int> KULLANICITIPI_ID { get; set; }
         [Display(Name = "Kullanýcý Adý")]
+        [Required]
         public string KULLANICIADI { get; set; }
         [Display(Name = "Þifre")]
+        [Required]
         public string SIFRE { get; set; }
         [Display(Name = "Aktif")]
         public Nullable<bool> AKTIF { get; set; }

@@ -24,11 +24,12 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.menuTanim.ADI)
-                    @Html.TextBoxFor(m => m.menuTanim.ADI, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.menuTanim.ADI)
-                    <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
-
+                    <form class="was-validated">
+                        @Html.LabelFor(m => m.menuTanim.ADI)
+                        @Html.TextBoxFor(m => m.menuTanim.ADI, new { @class = "form-control is-invalid", required = "required" })
+                        @Html.ValidationMessageFor(m => m.menuTanim.ADI)
+                        <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+                    </form>
 
                 </div>
                 <div class="modal-footer">

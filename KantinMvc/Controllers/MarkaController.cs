@@ -86,7 +86,7 @@ namespace KantinMvc.Controllers
         }
         public ActionResult MarkaSil(int? id)
         {
-
+            
             var marka = ctx.MARKA.Find(id);
             marka.SILINDI = true;
            // ctx.MARKA.Remove(marka);

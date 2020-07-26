@@ -24,11 +24,11 @@
 </head>
 <body>
     <div>
-        @using (Html.BeginForm("MenuGuncelle", "Menu", FormMethod.Post))
-        {   
+        @using (Html.BeginForm("MenuGuncelle", "Menu", FormMethod.Post, new { @class = "was-validated" }))
+        {
             @Html.HiddenFor(m => m.ID)
             @Html.LabelFor(m => m.ADI)
-            @Html.TextBoxFor(m => m.ADI, new { @class = "form-control" } )
+            @Html.TextBoxFor(m => m.ADI, new { @class = "form-control is-invalid", required = "required" } )
 
             <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label><br />
             <div>

@@ -23,55 +23,60 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <div class="form-row">
-                        <div class="col">
-                            @Html.LabelFor(s => s.klc.KULLANICIADI)
-                            @Html.TextBoxFor(s => s.klc.KULLANICIADI, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(s => s.klc.KULLANICIADI)
-                            <label  class="hata" style="display:none;color:red">Kullanıcı Adı alanı boş olamaz</label>
-                        </div>
-                        <div class="col">
-                            @Html.LabelFor(s => s.klc.SIFRE)
-                            @Html.TextBoxFor(s => s.klc.SIFRE, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(s => s.klc.SIFRE)
-                            <label  class="hata" style="display:none;color:red">Şifre alanı boş olamaz</label>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col">
-                            @Html.LabelFor(s => s.klc.SUBE_ID)
-                            <select class="form-control" id="klc_SUBE_ID" name="klc_SUBE_ID">
-                                @foreach (var item in Model.Subeler)
-                                {
-                                    if (item.SILINDI != true)
-                                    {
-                                        <option value="@item.ID">@item.ADI</option>
-                                    }
-                               
-                                }
+                <div class="form-group"><form class="was-validated">
+    <div class="form-row">
 
-                            </select>
-                            <span class="field-validation-valid" data-valmsg-for="klc_SUBE_ID" data-valmsg-replace="true"></span>
-                            @Html.ValidationMessageFor(s => s.klc.SUBE_ID)
-                        <label class="hata" style="display:none;color:red">Lütfen Şube seçiniz</label>
-                        </div>
-                        <div class="col">
-                            @Html.LabelFor(s => s.klc.KULLANICITIPI_ID)
-                            <select class="form-control" id="klc_KULLANICITIPI_ID" name="klc_KULLANICITIPI_ID">
-                                @foreach (var item in Model.KullaniciTip)
-                                {
-                                    <option value="@item.ID">@item.ADI</option>
 
-                                }
+        <div class="col">
+            @Html.LabelFor(s => s.klc.KULLANICIADI)
+            @Html.TextBoxFor(s => s.klc.KULLANICIADI, new { @class = "form-control is-invalid", required = "required" })
+            @Html.ValidationMessageFor(s => s.klc.KULLANICIADI)
+            <label class="hata" style="display:none;color:red">Kullanıcı Adı alanı boş olamaz</label>
+        </div>
+        <div class="col">
+            @Html.LabelFor(s => s.klc.SIFRE)
+            @Html.TextBoxFor(s => s.klc.SIFRE, new { @class = "form-control is-invalid", required = "required" })
+            @Html.ValidationMessageFor(s => s.klc.SIFRE)
+            <label class="hata" style="display:none;color:red">Şifre alanı boş olamaz</label>
+        </div>
 
-                            </select>
-                            <span class="field-validation-valid" data-valmsg-for="klc_KULLANICITIPI_ID" data-valmsg-replace="true"></span>
-                            @Html.ValidationMessageFor(o => o.klc.KULLANICITIPI_ID)
-                            <label class="hata" style="display:none;color:red">Lütfen Kullanıcı seçiniz</label>
-                        </div>
-                    </div>
-                </div>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            @Html.LabelFor(s => s.klc.SUBE_ID)
+            <select class="form-control is-invalid" id="klc_SUBE_ID" name="klc_SUBE_ID">
+                @foreach (var item in Model.Subeler)
+                {
+                    if (item.SILINDI != true)
+                    {
+                        <option value="@item.ID">@item.ADI</option>
+                    }
+
+                }
+
+            </select>
+            <span class="field-validation-valid" data-valmsg-for="klc_SUBE_ID" data-valmsg-replace="true"></span>
+            @Html.ValidationMessageFor(s => s.klc.SUBE_ID)
+            @*<label class="hata" style="display:none;color:red">Lütfen Şube seçiniz</label>*@
+        </div>
+        <div class="col">
+            @Html.LabelFor(s => s.klc.KULLANICITIPI_ID)
+            <select class="form-control is-invalid" id="klc_KULLANICITIPI_ID" name="klc_KULLANICITIPI_ID">
+                @foreach (var item in Model.KullaniciTip)
+                {
+                    <option value="@item.ID">@item.ADI</option>
+
+                }
+
+            </select>
+            <span class="field-validation-valid" data-valmsg-for="klc_KULLANICITIPI_ID" data-valmsg-replace="true"></span>
+            @Html.ValidationMessageFor(o => o.klc.KULLANICITIPI_ID)
+            @*<label class="hata" style="display:none;color:red">Lütfen Kullanıcı seçiniz</label>*@
+
+        </div>
+    </div>
+                    </form>
+</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
                     <input type="submit" name="btnKaydet" value="Kaydet" class="btn btn-primary" onclick="klcEkle()" />

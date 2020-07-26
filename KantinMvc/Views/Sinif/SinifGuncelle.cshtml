@@ -23,11 +23,11 @@
 </head>
 <body>
     <div>
-        @using (Html.BeginForm("SinifGuncelle", "Sinif", FormMethod.Post))
+        @using (Html.BeginForm("SinifGuncelle", "Sinif", FormMethod.Post, new { @class = "was-validated" }))
         {
             @Html.HiddenFor(m => m.ID)
             @Html.LabelFor(m => m.Sinif1)
-            @Html.TextBoxFor(m => m.Sinif1, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Sinif1, new { @class = "form-control is-invalid", required = "required" })
 
             <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label><br />
             <div>

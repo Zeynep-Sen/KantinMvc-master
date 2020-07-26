@@ -20,11 +20,11 @@
 </head>
 <body>
     <div>
-        @using (Html.BeginForm("UrunGrupGuncelle", "Urun", FormMethod.Post))
+        @using (Html.BeginForm("UrunGrupGuncelle", "Urun", FormMethod.Post, new { @class = "was-validated" }))
         {
             @Html.HiddenFor(m => m.ID)
             @Html.LabelFor(m => m.URUNGRUB)
-            @Html.TextBoxFor(m => m.URUNGRUB, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.URUNGRUB, new { @class = "form-control is-invalid", required = "required" })
 
             <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
             <br />

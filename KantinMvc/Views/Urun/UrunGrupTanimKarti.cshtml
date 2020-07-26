@@ -30,12 +30,13 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    @Html.LabelFor(s => s.urunGrubu.URUNGRUB)
-                    @Html.TextBoxFor(s => s.urunGrubu.URUNGRUB, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(s => s.urunGrubu.URUNGRUB)
-                    <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
+                    <form class="was-validated">
+                        @Html.LabelFor(s => s.urunGrubu.URUNGRUB)
+                        @Html.TextBoxFor(s => s.urunGrubu.URUNGRUB, new { @class = "form-control is-invalid", required = "required" })
+                        @Html.ValidationMessageFor(s => s.urunGrubu.URUNGRUB)
+                        <label id="lblAdHata" style="display:none;color:red">Ad alanı boş olamaz</label>
 
-
+</form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
